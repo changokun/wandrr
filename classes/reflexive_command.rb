@@ -1,0 +1,3 @@
+class ReflexiveCommand < Command
+	
+end
