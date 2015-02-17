@@ -1,4 +1,4 @@
-require_relative '../init'
+require_relative 'init'
 
 
 closet = Location.new('A closet')

@@ -1,16 +1,13 @@
-
-
-
 class Command
 
-  def initialize (str)
+  def initialize
     @actor = ''
-    @verb = str
-    @direct_objects = []
+    @verb = ''
   end
 
-  def execute game
-    if @verb == 'die'
+  def execute actor, game
+    if @verb == 'look'
+      p 
       puts 'Game over man.'
       game.stop
     else

@@ -1,16 +1,19 @@
-require_relative 'init'
-
 class Wandrr
 
-  def initialize
+  def initialize player
+    raise TypeError, 'Haters gonna hate, but only Players can play.' unless player.is_a? Player
 
-    load_default_data
-    load_player_data 
+    #move worlds definition out of player and into game, to make player lighter for passing around.
+    @player = player
+    @worlds = @player.worlds
+    @player.worlds = nil
 
     start
   end
 
   def start
+
+    # Give the player a description of their outfit and their surroundings.
     while true do
       run
     end
@@ -20,24 +23,6 @@ class Wandrr
     abort "\n\nThanks for playing.\n\n"
   end
 
-  def load_default_data
-
-    print 'Loading default data '
-    @locations = YAML.load_file('data/default_locations.yml')
-    print '.'
-    # @data = YAML.load_file('data/default.yml')
-    # print '.'
-    # p @data
-
-
-    print " done.\n"
-
-  end
-
-  def load_player_data
-    puts 'Loading your data has not been worked out just yet.'
-  end
-  
   def run
     prompt
     player_command = get_player_command
@@ -82,16 +67,4 @@ class Wandrr
 
 
 end
-
-
-
-puts 'hiya. what is yer name?'
-
-name = gets.chomp
-
-puts 'I thought so. Go die, ' + name
-
-game = Wandrr.new
-
-
 
