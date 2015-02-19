@@ -3,6 +3,8 @@ require 'digest'
 
 class Player < ArticulateAnimal
 
+  attr_accessor :worlds
+
   def initialize name
     super
     @name = name
@@ -49,15 +51,8 @@ class Player < ArticulateAnimal
       data = YAML.load_file(default_file_name)
     end
 
-    @location_pointer = data[:location_pointer]
+    @current_location_id = data[:current_location_id]
     @outfit = data[:outfit]
-
-    puts 'Loading the universe...'
-    if self.worlds_save_file_exists
-      @worlds = YAML.load_file(worlds_save_file_name)
-    else
-      @worlds = YAML.load_file(default_worlds_file_name)
-    end
 
   end
 

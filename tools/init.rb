@@ -1,4 +1,5 @@
 DATA_PATH = File.join(__dir__, '../data')
+COMMAND_PATH = File.join(__dir__, '../commands')
 SAVE_PATH = File.join(DATA_PATH, 'saves')
 
 
@@ -17,4 +18,5 @@ Dir[File.join(__dir__, '../classes/**/*.rb')].each do | class_name |
   require class_name
   print '.'
 end
+
 

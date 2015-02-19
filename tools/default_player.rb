@@ -3,7 +3,7 @@ require_relative 'init'
 data = {}
 data[:outfit] = Container.new
 
-data[:location_pointer] = 'closet'
+data[:current_location_id] = '2015-02-18_ab46be2cf3297e4d';
 
 
 File.open(File.join(DATA_PATH, 'default_player.yml'), 'w') do |file|

@@ -1,9 +1,0 @@
----
-- !ruby/object:Location
-  sys_name: a_closet
-  map_name: a closet
-  short_name: a closet
-  long_name: Your closet
-  descriptions:
-    :daylight: It is still pretty dark. You can feel some boxes and clothes.
-  illumination_level: :daylight
