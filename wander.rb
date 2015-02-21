@@ -4,7 +4,7 @@ puts "\n\n=====\nHello."
 
 satisfied = false
 while not satisfied do
-  puts 'What is your name?'
+  print 'What is your name? > '
   raw_input = gets.chomp
   name = raw_input.gsub /[^a-z0-9\-’ ]+/i, ''
   if name.length > 20
@@ -12,7 +12,7 @@ while not satisfied do
   elsif name.length < 3
     puts 'That’s too short. Try again.'
   elsif name != raw_input
-    puts 'Hmmm ... How about ' + name.red + '? [ok/no]'
+    print 'Hmmm ... How about ' + name.red + '? [ok/no]'
     response = gets.chomp
     satisfied = true if response == 'ok'
   else
@@ -22,7 +22,7 @@ while not satisfied do
 end
 
 
-puts "\nLet me see what I know about you, " + name
+puts "\nLet me see what I know about you, " + name.magenta
 
 player = Player.new name
 

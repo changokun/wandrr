@@ -14,6 +14,8 @@ class Player < ArticulateAnimal
 
     @debug_output_level = 0
 
+    @counts = {}
+
     load
   end
 
@@ -46,9 +48,21 @@ class Player < ArticulateAnimal
     str ||= 'abunai'
     if @debug_output_level >= level
       puts ("\n[#{str}]\n").black
+      return true
     end
+    return false
   end
 
+  def increment countable_thing
+    raise TypeError unless countable_thing.is_a? String or countable_thing.is_a? Symbol
+    countable_thing = countable_thing.to_sym
+    if @counts.key? countable_thing
+      @counts[countable_thing] += 1
+    else
+      @counts[countable_thing] = 1
+    end
+
+  end
 
   def name
     # todo have color reflect condition? move from white (well) to yellow to orange to red (near death)
@@ -75,7 +89,7 @@ class Player < ArticulateAnimal
 
     self.set_descriptions data[:descriptions]
     @debug_output_level ||= data[:debug_output_level]
-    @outfit = data[:outfit]
+    @counts = data[:counts]
 
   end
 

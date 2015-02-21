@@ -6,6 +6,7 @@ SAVE_PATH = File.join(DATA_PATH, 'saves')
 
 
 $LOAD_PATH << File.join(__dir__, '../classes')
+$LOAD_PATH << File.join(__dir__, '../classes/commands')
 
 require 'colorize'
 
