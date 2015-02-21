@@ -22,13 +22,14 @@ while not satisfied do
 end
 
 
-puts "\nLet me see what I know about you, " + name.magenta
+puts "\nLet me see what I know about you, " + name.magenta + '...'
 
 player = Player.new name
 
-player.debug_output 'We have a new player with his/her own locations and everything.'
+player.debug_output 'We have a new player,' + player.name + ', with his/her own locations and everything.'
 
 game = Wandrr.new player
 
 
 
+  

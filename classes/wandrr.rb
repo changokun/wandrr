@@ -14,6 +14,8 @@ class Wandrr
 
     @player.debug_output 'starting the game'
 
+    puts "\nOkay, here we go. Type " + 'help'.black.on_white + " to see the basic commands.\n\n"
+
     # Give the player a description of their outfit and their surroundings.
     Describe.call @player.location, :in_detail, @player
     Describe.call @player, :briefly, @player

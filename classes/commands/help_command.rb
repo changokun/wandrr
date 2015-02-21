@@ -12,6 +12,8 @@ class HelpCommand < SystemCommand
     puts 'wait - pass some time. Let others act.'
     puts 'die - end the game.'
     puts "\n------ System Commands".green
+    puts 'save - does nothing.'
+    puts 'load - does nothing.'
     puts 'set - will toggle debug output.'
     puts "\n------ Secret Commands".green
     puts 'burp'
