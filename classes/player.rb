@@ -3,7 +3,7 @@ require 'digest'
 
 class Player < ArticulateAnimal
 
-  attr_accessor :worlds
+  attr_accessor :worlds, :debug_output_level
 
   def initialize name
     super
@@ -15,6 +15,8 @@ class Player < ArticulateAnimal
     @debug_output_level = 0
 
     @counts = {}
+
+    debug_output 'player instantiated. about to load.'
 
     load
   end
@@ -46,6 +48,8 @@ class Player < ArticulateAnimal
   def debug_output str=nil, level=nil
     level ||= 1
     str ||= 'abunai'
+    str += ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
+
     if @debug_output_level >= level
       puts ("\n[#{str}]\n").black
       return true

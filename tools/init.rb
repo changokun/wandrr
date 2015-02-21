@@ -24,5 +24,3 @@ Dir[File.join(__dir__, '../classes/**/*.rb')].each do | class_name |
   print '.'.black
 end
 
-
-
