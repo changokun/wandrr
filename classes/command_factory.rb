@@ -1,7 +1,7 @@
 class CommandFactory
 
   def self.parse_input_string str, game
-    puts 'Trying to figure out what you want when you say, "' + str + '."'
+    game.player.debug_output 'Trying to figure out what you want when you say, "' + str + '."', 2
 
     words = str.split(' ')
     words.map { | word | word.strip! }

@@ -1,11 +1,15 @@
 require 'container'
 require 'yaml'
 require 'digest'
+require 'describable'
 
 
 # maybe a location is defined by the lighting. a well lit room prevents seeing under tables without kneeling and looking, which is a lot like entering.
 class Location < Container
-  attr_accessor :sysname, :map_name, :short_name, :long_name, :descriptions, :id
+
+  include Describable
+
+  attr_accessor :sysname, :map_name, :short_name, :long_name, :descriptions, :id, :illumination_level
 
   # The "World," as it were.
   @@locations = nil
@@ -15,8 +19,11 @@ class Location < Container
     @map_name = 'Nowhere'
     @short_name = 'Nowhere'
     @long_name = 'Nowhere at all'
-    @descriptions = {:daylight => 'This is no place anywhere.'}
-    @illumination_level = :daylight
+    default_descriptions = {
+      0..99 => {:any => 'This is no place anywhere.'}
+    }
+    self.set_descriptions default_descriptions
+    @illumination_level = IlluminationLevel::DAYLIGHT
     @id = Time.now.strftime('%Y-%m-%d') + '_' + Digest::MD5.hexdigest(short_name)[0...16]
 
     #sublocations
@@ -48,6 +55,20 @@ class Location < Container
   def self.get_by_id id
     self.load_the_world if @@locations.nil?
     @@locations[id]
+  end
+
+  def make_start_location condition=nil
+    # condition might be like 'if race is human, if race is orc, if role is victim, etc, but must be unique.'
+    condition ||= true
+    @id = condition
+  end
+
+  def self.get_starting_location
+    self.load_the_world if @@locations.nil?
+    @@locations.each do | key, loc |
+      return loc if loc.id === true
+    end
+    raise 'Could not find a starting location for new players. pick one and make_start_location()'
   end
 
 end

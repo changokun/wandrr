@@ -3,7 +3,15 @@ require_relative 'init'
 data = {}
 data[:outfit] = Container.new
 
-data[:current_location_id] = '2015-02-18_ab46be2cf3297e4d';
+data[:descriptions] = {
+  0..19 => {
+    :any => 'It is too dark to see your hand in front of your face.'
+  },
+  20..99 => {
+    :briefly => 'You seem to be wearing pajamas.',
+    :in_detail => 'You seem to be wearing pajamas, or some other softish full-body outfit. It covers your arms and legs.',
+  }
+}
 
 
 File.open(File.join(DATA_PATH, 'default_player.yml'), 'w') do |file|

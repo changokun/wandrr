@@ -2,13 +2,6 @@ require 'command'
 
 class ReflexiveCommand < Command
 
-  def execute actor, game
-    if @verb == 'die'
-      puts 'Game over man.'
-      game.stop
-    else
-      puts '     ... but I do not know how to ' + @verb + '. Sorry.'
-    end
-  end
-	
+  # this exists mostly as a short cut to make the direct object the self of the actor. sort of.
+
 end

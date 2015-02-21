@@ -1,0 +1,3 @@
+class DescribeLocationFromOutside < Describe
+
+end

@@ -1,11 +1,22 @@
 class Describe
 
-  def self.briefly obj
-    puts 'It is a(n) ' + obj.class.to_s
-  end
+  # Describe.call this_thing, briefly, to_this_actor
+  def self.call obj, depth, actor
+    if obj.class == Location
+      if actor.location.id == obj.id
+        DescribeLocationFromInside.call obj, depth, actor
+      else
+        puts 'let us DescribeLocationFromOutside'
+        DescribeLocationFromOutside.call obj, depth, actor
+      end
+    # elsif obj.class == Condition
+      #detect what this is the condition of then:
+      #DescribeConditionInSecondPerson you feel sick.
+      #DescribeConditionInThirdPerson he is bleeding.
+    else
+      DescribeItem.call obj, depth, actor
+    end
 
-  def self.in_detail obj
-    puts 'Well, this is clearly a(n) ' + obj.class.to_s + ', which should have properties, attributes, containers, etc.'
   end
 
 end
