@@ -45,9 +45,7 @@ class Player < ArticulateAnimal
     File.exist? worlds_save_file_name
   end
 
-  def debug_output str=nil, level=nil
-    level ||= 1
-    str ||= 'abunai'
+  def debug_output str='abunai', level=1
     str += ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
 
     if @debug_output_level >= level
