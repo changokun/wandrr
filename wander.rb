@@ -24,9 +24,7 @@ end
 
 puts "\nLet me see what I know about you, " + name.magenta + '...'
 
-player = Player.new name
-
-player.debug_output 'We have a new player,' + player.name + ', with his/her own locations and everything.'
+player = Player.get_player_by_name name
 
 game = Wandrr.new player
 

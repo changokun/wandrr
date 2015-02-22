@@ -3,47 +3,28 @@ require 'digest'
 
 class Player < ArticulateAnimal
 
-  attr_accessor :worlds, :debug_output_level
+  attr_accessor :debug_output_level
 
   def initialize name
     super
-    @name = name
-    # The short hash is added so that when we remove chars we don't create the same system name for Joe and Joe!
-    @system_name = name.gsub(/[^a-z0-9]+/i, '') + '_' + Digest::MD5.hexdigest(name)[0...8]
-    @save_dir = File.join(SAVE_PATH, @system_name)
-
     @debug_output_level = 0
-
-    @counts = {}
-
-    debug_output 'player instantiated. about to load.'
-
-    load
   end
 
-  def save_file_name
-    File.join(@save_dir, 'player.yml')
+
+
+  def self.get_player_by_name name
+    player = self.new name # gotta have player object to get save path.... for now.
+    begin
+      player.load
+    rescue
+      player = self.new 'default'
+      player.load
+      player.set_name name
+    end
+    player
   end
 
-  def worlds_save_file_name
-    File.join(@save_dir, 'worlds.yml')
-  end
 
-  def default_file_name
-    File.join(DATA_PATH, 'default_player.yml')
-  end
-
-  def default_worlds_file_name
-    File.join(DATA_PATH, 'default_worlds.yml')
-  end
-
-  def save_file_exists
-    File.exist? save_file_name
-  end
-
-  def worlds_save_file_exists
-    File.exist? worlds_save_file_name
-  end
 
   def debug_output str=nil, level=nil
     level ||= 1
@@ -57,6 +38,7 @@ class Player < ArticulateAnimal
     return false
   end
 
+  # moving to module
   def increment countable_thing
     raise TypeError unless countable_thing.is_a? String or countable_thing.is_a? Symbol
     countable_thing = countable_thing.to_sym
@@ -73,28 +55,76 @@ class Player < ArticulateAnimal
     @name.magenta
   end
 
-  private
+  def set_name name
+    raise 'cannot change names.' unless @name == 'default'
+    @name = name
+  end
 
-  def load
 
-    if self.save_file_exists
-      puts 'Loading a save file that I found...'
 
-      debug_output 'loading ' + save_file_name.red
-      data = YAML.load_file(save_file_name)
-      @location = Location::get_by_id data[:location_id]
+
+
+
+
+
+  def save data = nil
+    # what is the data? self? some locations? etc
+    if data.nil?
+      file_name_base = self.class.to_s.downcase
+      data = self
+    elsif data.class == Hash
+      file_name_base = data.values[0].class.to_s.downcase
+    elsif data.class == Array
+      file_name_base = data[0].class.to_s.downcase
     else
-      puts 'I found no save file for you, ' + name + ', so let’s start you off right...'
-      debug_output 'loading ' + default_file_name.red
-      data = YAML.load_file(default_file_name)
-      # starting location is special.
-      @location = Location::get_starting_location
+      raise 'I do not know yet how to save ' + data.class.to_s.red + '.'
     end
 
-    self.set_descriptions data[:descriptions]
-    @debug_output_level ||= data[:debug_output_level]
-    @counts = data[:counts]
+    File.open(File.join(data_path, file_name_base + '.yml'), 'w') do |file|
+        file.puts YAML::dump(data)
+        debug_output 'Fresh ' + file_name_base + ' data saved as YAML, so that we have a human-readable version (do not bother with editing it).'
+    end
 
+    File.open(File.join(data_path, file_name_base + '.data'), 'w') do |file|
+        file.puts Marshal::dump(data)
+        debug_output 'Fresh ' + file_name_base + ' data saved as binary data, so that we have an obfuscated version (which is what really gets loaded).'
+    end
   end
+
+  def data_path
+    Dir::mkdir(DATA_PATH) unless Dir::exists? DATA_PATH
+    path = File.join(DATA_PATH, get_file_safe_name)
+    Dir::mkdir(path) unless Dir::exists? path
+    path
+  end
+
+  def load
+    file_name_base = self.class.to_s.downcase
+    Marshal::load(File.open(File.join(data_path, file_name_base + '.data'), 'r'))
+  end
+
+  def load_world
+    # basically, for every file in the data folder for htis player, load it to its class.
+    Dir.new(data_path).each do | file_name |
+      puts file_name
+    end
+
+    abort
+    Marshal::load(File.open(File.join(data_path, file_name_base + '.data'), 'r'))
+  end
+
+  private
+
+
+  def get_file_safe_name
+    # The short hash is added so that when we remove chars we don't create the same system name for Joe and Joe!
+    return @name if @name == 'default'
+    @name.gsub(/[^a-z0-9_]+/i, '') + '_' + Digest::MD5.hexdigest(@name)[0...8]
+  end
+
+
+
+
+
 
 end

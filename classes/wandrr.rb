@@ -7,6 +7,16 @@ class Wandrr
 
     @player = player
 
+    # now load up all the locations, quests, portals, etc that are saved for this player.
+    # which actually starts by having a fresh default player and using the default locations and whatnot, then loading any under the player's name.
+
+    default_player = Player.new 'default'
+    default_player.load_world
+
+    abort 'those are the default locations.'
+
+    @portals = default_player.load_portals
+
     start
   end
 

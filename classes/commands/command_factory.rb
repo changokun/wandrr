@@ -3,10 +3,10 @@ class CommandFactory
   def self.parse_input_string str, game
     game.player.debug_output 'Trying to figure out what you want when you say, "' + str + '."', 2
 
-    words = str.split(' ')
+    words = (str.gsub /[^a-z0-9 ]+/, ' ').split(' ')
     words.map { | word | word.strip! }
 
-    first_word = words.shift
+    first_word = words[0]
 
     potential_command_class_name = first_word.capitalize + 'Command'
 

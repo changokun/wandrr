@@ -3,6 +3,7 @@ class Command
   def initialize game, words
     @game = game
     @words = words
+    @actor = nil
   end
 
   def execute
