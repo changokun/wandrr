@@ -49,7 +49,7 @@ class Wandrr
 
   def get_player_command
     command = nil
-    while ! command do
+    until command do
       raw_command = ''
       until raw_command.length > 0 do
         raw_command = gets.strip
