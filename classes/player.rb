@@ -46,7 +46,8 @@ class Player < ArticulateAnimal
   end
 
   def debug_output str='abunai', level=1
-    str += ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
+    str = str.to_s
+    str << ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
 
     if @debug_output_level >= level
       puts ("\n[#{str}]\n").black
