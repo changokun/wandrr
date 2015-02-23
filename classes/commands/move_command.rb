@@ -14,7 +14,7 @@ class MoveCommand < Command
 
     if words.length == 1
       # no portal nor direct object specified. let's assume they want to move themselves.
-      @actor = @game.player
+      @actor = $player
       # are there any portals?
       p @actor.location
 

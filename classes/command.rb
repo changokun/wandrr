@@ -1,9 +1,8 @@
 class Command
 
-  def initialize game, words
-    @game = game
+  def initialize words, actor = nil
     @words = words
-    @actor = nil
+    @actor ||= $player
   end
 
   def execute

@@ -1,7 +1,9 @@
 class Describe
 
   # Describe.call this_thing, briefly, to_this_actor
-  def self.call obj, depth, actor
+  def self.call obj, depth, actor = nil
+    actor ||= $player
+    
     if obj.class == Location
       if actor.location.id == obj.id
         DescribeLocationFromInside.call obj, depth, actor

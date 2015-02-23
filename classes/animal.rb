@@ -4,7 +4,7 @@ class Animal < Being
 
 	# flesh and blood
 
-  def initialize name
+  def initialize name = nil
     super
     @outfit = nil
   end

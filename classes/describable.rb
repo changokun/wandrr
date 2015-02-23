@@ -24,7 +24,8 @@ module Describable
     true
   end
 
-  def describe depth, actor
+  def describe depth, actor = nil
+    actor ||= $player
     #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 
     actor.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (lighting: ' + actor.location.illumination_level.to_s + ')'

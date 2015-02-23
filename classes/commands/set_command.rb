@@ -7,12 +7,12 @@
 class SetCommand < SystemCommand
 
 	def execute
-    if @game.player.debug_output_level > 0
-      @game.player.debug_output 'Turning off debug output.'
-      @game.player.debug_output_level = 0
+    if $player.debug_output_level > 0
+      $player.debug_output 'Turning off debug output.'
+      $player.debug_output_level = 0
     else
-      @game.player.debug_output_level = 1
-      @game.player.debug_output 'Turning on debug output.'
+      $player.debug_output_level = 1
+      $player.debug_output 'Turning on debug output.'
     end
 	end
 

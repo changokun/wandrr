@@ -1,0 +1,77 @@
+--- !ruby/object:Player
+name: default
+location_id: 2015-02-23_ab46be2cf3297e4d
+outfit: 
+debug_output_level: 1
+locations:
+  2015-02-23_ab46be2cf3297e4d: !ruby/object:Location
+    sys_name: 
+    map_name: A closet
+    short_name: A closet
+    long_name: Your closet
+    description_data:
+      ? !ruby/range
+        begin: 0
+        end: 19
+        excl: false
+      : :briefly: It feels like you are in a closet. You can feel some boxes and clothes.
+        :in_detail: It feels like you are in a closet. You can feel some boxes and
+          clothes. It is maybe four feet deep and three feet across. A tiny amount
+          of light creeps in under the door.
+      ? !ruby/range
+        begin: 20
+        end: 99
+        excl: false
+      : :briefly: You are in a clothes closet. There are boxes and clothes hanging.
+        :in_detail: This clothes closet has several shoe boxes stacked up and dozens
+          of mens shirts and jackets hanging on a rod.
+    illumination_level: 10
+    id: 2015-02-23_ab46be2cf3297e4d
+    locations: []
+  2015-02-23_c6d4bff85e1ccd23: !ruby/object:Location
+    sys_name: 
+    map_name: A bedroom
+    short_name: A bedroom
+    long_name: Your bedroom
+    description_data:
+      ? !ruby/range
+        begin: 0
+        end: 99
+        excl: false
+      : :briefly: You are in a bedroom. You can tell this because there is a bed.
+        :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
+          the wall, is neatly made with an orange blanket on top and two pillows.
+          The walls are also orange.
+    illumination_level: 60
+    id: 2015-02-23_c6d4bff85e1ccd23
+    locations: []
+portals:
+  211eca28a8fad1c602e2056ca8a522dc: !ruby/object:Portal
+    location_a_id: 2015-02-23_ab46be2cf3297e4d
+    location_b_id: 2015-02-23_c6d4bff85e1ccd23
+    door_a: &1 !ruby/object:Door
+      this_side_state: :shut
+      description_data:
+        ? !ruby/range
+          begin: 0
+          end: 99
+          excl: false
+        : :briefly: a normal door.
+          :in_detail: A normal house door. Twisting a round knob to one side will
+            open it. It is probably painted white. Jeez.
+    door_b: *1
+    id: 211eca28a8fad1c602e2056ca8a522dc
+file_safe_name: 
+description_data:
+  ? !ruby/range
+    begin: 0
+    end: 19
+    excl: false
+  : :any: It is too dark to see your hand in front of your face.
+  ? !ruby/range
+    begin: 20
+    end: 99
+    excl: false
+  : :briefly: You seem to be wearing pajamas.
+    :in_detail: You seem to be wearing pajamas, or some other softish full-body outfit.
+      It covers your arms and legs.

@@ -1,7 +1,7 @@
 DATA_PATH = File.expand_path(File.join(__dir__, '../data'))
-COMMAND_PATH = File.expand_path(File.join(__dir__, '../commands'))
+Dir::mkdir(DATA_PATH) unless Dir::exists? DATA_PATH
+
 CLASS_PATH = File.expand_path(File.join(__dir__, '../classes'))
-SAVE_PATH = File.join(DATA_PATH, 'saves')
 
 
 $LOAD_PATH << CLASS_PATH

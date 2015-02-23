@@ -1,6 +1,6 @@
 class WaitCommand < Command
   def execute
-    @game.player.debug_output 'You skip your turn.'
+    $player.debug_output 'You skip your turn.'
   end
 end
 

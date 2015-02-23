@@ -2,7 +2,7 @@ require 'animal'
 
 class ArticulateAnimal < Animal
 
-  def initialize name
+  def initialize name = nil
     super
   end
 

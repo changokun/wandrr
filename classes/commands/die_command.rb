@@ -4,7 +4,7 @@ class DieCommand < ReflexiveCommand
 
   def execute
     puts "\nYou die.\n".red
-    @game.stop
+    $player.game.stop
   end
 
 end

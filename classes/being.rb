@@ -3,7 +3,7 @@ require 'describable'
 class Being
 
   # capable of sensing and acting/reacting
-  attr_reader :location_id
+  # kill attr_reader :location_id
 
   include Describable
 
@@ -30,7 +30,8 @@ class Being
   end
 
   def location
-    Location::get_by_id @location_id
+    #todo add error handling
+    $locations[@location_id]
   end
 
   def set_location_id id

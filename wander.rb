@@ -24,9 +24,9 @@ end
 
 puts "\nLet me see what I know about you, " + name.magenta + '...'
 
-player = Player.get_player_by_name name
+PlayerFactory::set_player_by_name(name)
 
-game = Wandrr.new player
+game = Wandrr.new
 
 
 

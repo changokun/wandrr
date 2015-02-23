@@ -36,6 +36,3 @@ build/
 # wandrr
 saves/
  # for now
-*.data
-*.yml
-*.yaml

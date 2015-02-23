@@ -1,34 +1,23 @@
 class Wandrr
 
-  attr_reader :player
-
-  def initialize player
-    raise TypeError, 'Haters gonna hate, but only Players can play.' unless player.is_a? Player
-
-    @player = player
-
-    # now load up all the locations, quests, portals, etc that are saved for this player.
-    # which actually starts by having a fresh default player and using the default locations and whatnot, then loading any under the player's name.
-
-    default_player = Player.new 'default'
-    default_player.load_world
-
-    abort 'those are the default locations.'
-
-    @portals = default_player.load_portals
+  def initialize
+    raise 'Haters gonna hate, but only Players can play. Must have $player global set.' unless $player.is_a? Player
 
     start
   end
 
   def start
 
-    @player.debug_output 'starting the game'
+    $player.debug_output 'starting the game'
+
+    # give the player a reference to the game
+    $player.game = self
 
     puts "\nOkay, here we go. Type " + 'help'.black.on_white + " to see the basic commands.\n\n"
 
     # Give the player a description of their outfit and their surroundings.
-    Describe.call @player.location, :in_detail, @player
-    Describe.call @player, :briefly, @player
+    Describe.call $player.location, :in_detail
+    Describe.call $player, :briefly
     
     while true do
       run
@@ -36,7 +25,7 @@ class Wandrr
   end
 
   def stop
-    @player.debug_output 'ending the game'
+    $player.debug_output 'ending the game'
     abort "\n\nThanks for playing.\n\n"
   end
 
@@ -64,16 +53,16 @@ class Wandrr
       until raw_command.length > 0 do
         raw_command = gets.strip
       end
-      command = CommandFactory::parse_input_string(raw_command, self)
+      command = CommandFactory::parse_input_string raw_command
       prompt 'Huh?' if command.nil?
     end
-    puts '' unless @player.debug_output command.class.to_s + ' accepted.'
+    puts '' unless $player.debug_output command.class.to_s + ' accepted.'
     return command
   end
 
   def act_as_player command
     # figure out the effect, change states of things/locations.
-    @player.debug_output 'you are acting. things will probably change.', 2
+    $player.debug_output 'you are acting. things will probably change.', 2
     command.execute
   end
 

@@ -4,8 +4,22 @@ require_relative 'init'
 
 
 
-pile = []
-portals = []
+player = Player.new # all our saves will now be in the default dir.
+
+description_data = {
+  0..19 => {
+    :any => 'It is too dark to see your hand in front of your face.'
+  },
+  20..99 => {
+    :briefly => 'You seem to be wearing pajamas.',
+    :in_detail => 'You seem to be wearing pajamas, or some other softish full-body outfit. It covers your arms and legs.',
+  }
+}
+
+player.set_descriptions description_data
+
+
+
 
 
 closet = Location.new('A closet')
@@ -22,7 +36,10 @@ description_data = {
     }
   }
 closet.set_descriptions description_data
-pile << closet
+player.locations[closet.id] = closet
+# set starting point for new games:
+player.set_location_id closet.id
+
 
 
 
@@ -38,7 +55,8 @@ description_data = {
   }
 bedroom.set_descriptions description_data
 
-pile << bedroom
+
+player.locations[bedroom.id] = bedroom
 
 
 # let us connect those two.
@@ -53,12 +71,7 @@ description_data = {
 door.set_descriptions description_data
 portal = Portal.new closet, door, bedroom, door
 
-portals << portal
-
-
-
-locations = {}
-pile.each do | loc | locations[loc.id] = loc end
+player.portals[portal.id] = portal
 
 
 
@@ -66,27 +79,10 @@ pile.each do | loc | locations[loc.id] = loc end
 
 
 
-player = Player.new 'default' # all our saves will now be in the default dir.
 
-description_data = {
-  0..19 => {
-    :any => 'It is too dark to see your hand in front of your face.'
-  },
-  20..99 => {
-    :briefly => 'You seem to be wearing pajamas.',
-    :in_detail => 'You seem to be wearing pajamas, or some other softish full-body outfit. It covers your arms and legs.',
-  }
-}
 
-player.set_descriptions description_data
 
-# set starting point for new games:
-player.set_location_id closet.id
 
-player.save
-
-player.save locations
-
-player.save portals
+PlayerFactory::save_fresh_starting_player_data player
 
 puts "\nSome files saved.\n\n"

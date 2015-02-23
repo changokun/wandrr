@@ -2,9 +2,8 @@ require 'non_reflexive_command'
 
 class LookCommand < NonReflexiveCommand
 
-  def initialize game, words
+  def initialize words, actor = nil
     super
-    @actor = @game.player
 
     @direct_object ||= @actor.location # default 'look around'
 

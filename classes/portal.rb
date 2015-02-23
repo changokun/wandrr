@@ -24,6 +24,8 @@ class Portal
 
   # ..... but most of the time opening a door from either side will open it for the other side as well. perhaps this is too complex.
 
+  attr_reader :id
+
   def initialize location_a, door_a, location_b = nil, door_b = nil
     raise TypeError unless location_a.is_a? Location and door_a.is_a? Door
     # loc b is currently optional, for false doors. hmmm
@@ -34,6 +36,8 @@ class Portal
     @door_a = door_a
     @door_b = door_b
 
+    @id = Digest::MD5.hexdigest(@location_a_id.to_s + @location_b_id.to_s)
+
   end
 
   def get_portal_from_this_location location
@@ -42,7 +46,6 @@ class Portal
 
     location.id == @location_a_id ? @door_a : @door_b
   end
-
 
 
 
