@@ -3,9 +3,16 @@ require 'non_reflexive_command'
 class LookCommand < NonReflexiveCommand
 
   def initialize words, actor = nil
-    super
 
-    @direct_object ||= @actor.location # default 'look around'
+    actor ||= $player
+    @actor = actor
+
+    # we may resolve DO here and now.... if no additional words, DO is location
+    if words.length == 1 # ["look"]
+      @direct_object ||= @actor.location # default 'look around'
+    end
+
+    super
 
   end
 
