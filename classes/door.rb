@@ -11,4 +11,22 @@ class Door
     # @other_side_state ha ha who cares?
   end
 
+  def open actor = nil, words = nil
+    # actor and words not needed yet, but they may finesse things in the future.
+    if @this_side_state == :open
+      puts 'the door is already open!'
+    else
+      @this_side_state = :open
+      puts 'YAY you opened a door!!!'
+    end
+  end
+
+  def describe depth, actor = nil
+    super
+
+    puts 'This ' + simple_label + ' is ' + @this_side_state.to_s + '.'
+  end
+
+
+
 end

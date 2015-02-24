@@ -19,16 +19,32 @@ module Describable
  #    }
  #  }
 
+  def might_be_called labels
+    @labels_player_might_use_to_refer_to_this ||= []
+    # todo soften things like plurals and misspleeings.
+    @labels_player_might_use_to_refer_to_this.push *labels
+  end
+
   def is_describable?
     # todo test that we have description_data or can inherit it.
     true
+  end
+
+  def could_be_called? label
+    # todo soften things like plurals and misspleeings.
+    @labels_player_might_use_to_refer_to_this.include? label
+  end
+
+  def simple_label
+    return @labels_player_might_use_to_refer_to_this[0] if @labels_player_might_use_to_refer_to_this.length > 0
+    return self.class.to_s
   end
 
   def describe depth, actor = nil
     actor ||= $player
     #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 
-    actor.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (lighting: ' + actor.location.illumination_level.to_s + ')'
+    $player.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (lighting: ' + actor.location.illumination_level.to_s + ')'
     # p @description_data
 
     @description_data.each do | illumination_level, descriptions |

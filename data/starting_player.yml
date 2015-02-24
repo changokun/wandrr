@@ -3,6 +3,8 @@ name: default
 location_id: 2015-02-23_ab46be2cf3297e4d
 outfit: 
 debug_output_level: 1
+file_safe_name: 
+game: 
 locations:
   2015-02-23_ab46be2cf3297e4d: !ruby/object:Location
     sys_name: 
@@ -59,9 +61,11 @@ portals:
         : :briefly: a normal door.
           :in_detail: A normal house door. Twisting a round knob to one side will
             open it. It is probably painted white. Jeez.
+      labels_player_might_use_to_refer_to_this:
+      - door
+      - bedroom-door
     door_b: *1
     id: 211eca28a8fad1c602e2056ca8a522dc
-file_safe_name: 
 description_data:
   ? !ruby/range
     begin: 0

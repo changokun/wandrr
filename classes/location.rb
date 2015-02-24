@@ -24,7 +24,7 @@ class Location < Container
     @id = Time.now.strftime('%Y-%m-%d') + '_' + Digest::MD5.hexdigest(short_name)[0...16]
 
     # sublocations? 
-    @locations = [] 
+    @locations = []
 
     if short_name
       @short_name = short_name
@@ -33,7 +33,23 @@ class Location < Container
     end
   end
 
+  def portals
+    portals = []
+    $player.portals.each do | portal_id, portal |
+      if portal.location_a_id == @id or portal.location_b_id == @id
+        portals << portal
+      end
+    end
+    portals
+  end
 
+  def doors
+    doors = []
+    self.portals.each do | portal |
+      doors << portal.get_door_for_location(self)
+    end
+    doors
+  end
 
 
 

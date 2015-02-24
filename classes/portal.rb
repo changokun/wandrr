@@ -24,7 +24,7 @@ class Portal
 
   # ..... but most of the time opening a door from either side will open it for the other side as well. perhaps this is too complex.
 
-  attr_reader :id
+  attr_reader :id, :location_a_id, :location_b_id
 
   def initialize location_a, door_a, location_b = nil, door_b = nil
     raise TypeError unless location_a.is_a? Location and door_a.is_a? Door
@@ -40,10 +40,9 @@ class Portal
 
   end
 
-  def get_portal_from_this_location location
+  def get_door_for_location location
     raise TypeError unless location.is_a? Location
     # is this location the a or the b?
-
     location.id == @location_a_id ? @door_a : @door_b
   end
 

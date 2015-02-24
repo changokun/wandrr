@@ -69,6 +69,7 @@ description_data = {
     }
   }
 door.set_descriptions description_data
+door.might_be_called %w{door bedroom-door}
 portal = Portal.new closet, door, bedroom, door
 
 player.portals[portal.id] = portal

@@ -2,7 +2,7 @@ class MoveCommand < Command
   # start the process of changing locations.
   # must have portal.
 
-  def initialize game, words
+  def initialize words, actor = nil
     super
 
     # variations to be prepared for:
