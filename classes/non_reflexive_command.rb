@@ -8,8 +8,7 @@ class NonReflexiveCommand < Command
     @direct_object ||= nil
 
     # is one of the words an object that can be looked at?
-    verb = words.shift
-    $player.debug_output 'What would Player like to ' + verb.red + '?'
+    $player.debug_output 'What would Player like to ' + @verb.red + '?'
 
     additional_input = Array.new(words)
 
@@ -21,7 +20,7 @@ class NonReflexiveCommand < Command
         word = additional_input.shift if additional_input.length > 0
 
         if word.nil?
-          $player.game.prompt 'What would you like to ' + verb.red + ' (at/to)?'
+          $player.game.prompt 'What would you like to ' + @verb.red + ' (at/to)?'
           word = ''
           until word.length > 0 do
             word = gets
@@ -62,5 +61,31 @@ class NonReflexiveCommand < Command
     end
 
   end
+
+
+
+
+  def execute
+    if @direct_object.nil?
+      puts @actor.name + ' ' + @verb + 's nothing.'
+    else
+      puts @actor.name + ' ' + @verb + 's ' + @direct_object.simple_label + '.'
+
+      # oh shit. this is the hard part.
+      if @direct_object.respond_to? @verb.to_sym
+        @direct_object.send @verb, [@actor, @words]
+      elsif @direct_object.respond_to? :respond # which would be a method that takes the verb and actor, etc, and can handle the command.
+        raise 'respond methods not yet written' # unnec, i know.
+      elsif defined?(@direct_object.response_narratives) && @direct_object.response_narratives.respond_to?(:key?) && @direct_object.response_narratives.key?(@verb.to_sym)
+        puts @direct_object.response_narratives[@verb.to_sym]
+      elsif defined?(@direct_object.response_narratives) && @direct_object.response_narratives.respond_to?(:key?) && @direct_object.response_narratives.key?(:any)
+        puts @direct_object.response_narratives[:any]
+      else
+        puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
+      end
+    end
+  end
+
+
 
 end

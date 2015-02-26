@@ -2,13 +2,6 @@ require 'non_reflexive_command'
 
 class OpenCommand < NonReflexiveCommand
 
-  def initialize words, actor = nil
-    super
-    @verb = 'open'
-
-    # enforce DO? here?
-
-  end
 
   def execute
 
