@@ -18,6 +18,7 @@ class Door
     else
       @this_side_state = :open
       puts 'YAY you opened a door!!!'
+      #queue up description?
     end
   end
 

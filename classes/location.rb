@@ -1,12 +1,12 @@
-require 'container'
+require 'capacitous'
 require 'digest'
 require 'describable'
 
 
 # maybe a location is defined by the lighting. a well lit room prevents seeing under tables without kneeling and looking, which is a lot like entering.
-class Location < Container
+class Location
 
-  include Describable
+  include Describable, Capacitous
 
   attr_accessor :sysname, :map_name, :short_name, :long_name, :descriptions, :id, :illumination_level
 

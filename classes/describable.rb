@@ -8,7 +8,6 @@ module Describable
   # :detail - this will often be used for the first time you look at something, and again later when requested specially.
 
   # let classes set their own default descriptions
-	@description_data = {}
   # @description_data = {
  #    0..19 => {
  #      :any => 'It is too dark to see anything about this.'
@@ -62,6 +61,18 @@ module Describable
 
   def set_descriptions descriptions
     @description_data = descriptions
+  end
+
+  def add_description description, illumination_level=0..99, depth=:any
+    @description_data = {} unless self.instance_variable_defined? :@description_data
+    @description_data[illumination_level] = {} unless @description_data.key? illumination_level
+    
+    if @description_data[illumination_level].key? depth
+      @description_data[illumination_level][depth] += ' FURTHERMORE ' + description
+    else
+      @description_data[illumination_level][depth] = description
+    end
+
   end
 
   private

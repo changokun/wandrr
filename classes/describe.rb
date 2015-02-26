@@ -19,6 +19,12 @@ class Describe
       DescribeItem.call obj, depth, actor
     end
 
+    if obj.is_a? Capacitous
+      obj.contents.each { | item | 
+        DescribeItem.call item, depth, actor 
+      }
+    end
+
   end
 
 end

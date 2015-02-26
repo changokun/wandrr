@@ -39,6 +39,7 @@ class NonReflexiveCommand < Command
 
         if @direct_object.nil?
           # does word refer to room items?
+          @actor.location.contents.each { | item | @direct_object = item if item.could_be_called? word }
         end
 
         if @direct_object.nil?

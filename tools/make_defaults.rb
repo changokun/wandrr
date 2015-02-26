@@ -36,6 +36,11 @@ description_data = {
     }
   }
 closet.set_descriptions description_data
+
+boxes = Item.new 'Some shoeboxes are stacked in a corner.'
+boxes.might_be_called %w{box boxes shoeboxes}
+closet.contents.add boxes
+
 player.locations[closet.id] = closet
 # set starting point for new games:
 player.set_location_id closet.id
