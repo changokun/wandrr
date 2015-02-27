@@ -1,12 +1,12 @@
 --- !ruby/object:Player
 name: default
-location_id: 2015-02-26_ab46be2cf3297e4d
+location_id: 2015-02-27_ab46be2cf3297e4d
 outfit: 
 debug_output_level: 0
 file_safe_name: 
 game: 
 locations:
-  2015-02-26_ab46be2cf3297e4d: !ruby/object:Location
+  2015-02-27_ab46be2cf3297e4d: !ruby/object:Location
     sys_name: 
     map_name: A closet
     short_name: A closet
@@ -28,27 +28,32 @@ locations:
         :in_detail: This clothes closet has several shoe boxes stacked up and dozens
           of mens shirts and jackets hanging on a rod.
     illumination_level: 10
-    id: 2015-02-26_ab46be2cf3297e4d
+    id: 2015-02-27_ab46be2cf3297e4d
     locations: []
     contents: !ruby/object:Contents_
       contents:
-        0bb69827c2df82a1: !ruby/object:Item
+        0f41d049876d9b4f: !ruby/object:Item
           description_data:
             ? !ruby/range
               begin: 0
               end: 99
               excl: false
             : :any: Some shoeboxes are stacked in a corner.
-          id: 0bb69827c2df82a1
-          response_narratives:
-            :move: There isn’t much room. You shift the boxes a few inches, but nothing
-              happens.
-            :any: Really? They are just some old shoeboxes. Nothing happens.
+          id: 0f41d049876d9b4f
           labels_player_might_use_to_refer_to_this:
           - box
           - boxes
           - shoeboxes
-  2015-02-26_c6d4bff85e1ccd23: !ruby/object:Location
+          responses:
+            :move: There isn’t much room. You shift the boxes a few inches, but nothing
+              happens.
+            :any: Really? They are just some old shoeboxes. Nothing happens.
+            :kill: !ruby/object:Response
+              responder: :game
+              method: :stop
+              narrative: Really? You want to kill the shoe box? You must be a maniac.
+                You will not enjoy this game. Go find something else to do.
+  2015-02-27_c6d4bff85e1ccd23: !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -63,12 +68,12 @@ locations:
           the wall, is neatly made with an orange blanket on top and two pillows.
           The walls are also orange.
     illumination_level: 60
-    id: 2015-02-26_c6d4bff85e1ccd23
+    id: 2015-02-27_c6d4bff85e1ccd23
     locations: []
 portals:
-  80e0a48b7f22991d21d017a7e99011e0: !ruby/object:Portal
-    location_a_id: 2015-02-26_ab46be2cf3297e4d
-    location_b_id: 2015-02-26_c6d4bff85e1ccd23
+  931ce4052ed9146a1c1ef96a1da1320b: !ruby/object:Portal
+    location_a_id: 2015-02-27_ab46be2cf3297e4d
+    location_b_id: 2015-02-27_c6d4bff85e1ccd23
     door_a: &1 !ruby/object:Door
       this_side_state: :shut
       description_data:
@@ -83,7 +88,7 @@ portals:
       - door
       - bedroom-door
     door_b: *1
-    id: 80e0a48b7f22991d21d017a7e99011e0
+    id: 931ce4052ed9146a1c1ef96a1da1320b
 description_data:
   ? !ruby/range
     begin: 0

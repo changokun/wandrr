@@ -39,10 +39,9 @@ closet.set_descriptions description_data
 
 boxes = Item.new 'Some shoeboxes are stacked in a corner.'
 boxes.might_be_called %w{box boxes shoeboxes}
-boxes.response_narratives = {
-  :move => 'There isn’t much room. You shift the boxes a few inches, but nothing happens.',
-  :any => 'Really? They are just some old shoeboxes. Nothing happens.'
-}
+boxes.add_response :move, 'There isn’t much room. You shift the boxes a few inches, but nothing happens.'
+boxes.add_response :any, 'Really? They are just some old shoeboxes. Nothing happens.'
+boxes.add_response :kill, Response.new(:game, :stop, 'Really? You want to kill the shoe box? You must be a maniac. You will not enjoy this game. Go find something else to do.')
 closet.contents.add boxes
 
 player.locations[closet.id] = closet

@@ -14,13 +14,15 @@ class Door
   def open actor = nil, words = nil
     # actor and words not needed yet, but they may finesse things in the future.
     if @this_side_state == :open
-      puts 'the door is already open!'
+      puts 'The ' + simple_label + ' is already open.'
     else
       @this_side_state = :open
-      puts 'YAY you opened a door!!!'
+      puts 'You opened a ' + simple_label + '.'
       #queue up description?
       
     end
+    puts 'You must be very pround of yourself.'
+    
   end
 
   def describe depth, actor = nil

@@ -1,11 +1,12 @@
 require 'describable'
+require 'responds'
 
 class Being
 
   # capable of sensing and acting/reacting
   # kill attr_reader :location_id
 
-  include Describable
+  include Describable, Responds
 
   def initialize(name=nil, location_id=nil)
     @name ||= name

@@ -11,6 +11,7 @@ class NonReflexiveCommand < Command
     $player.debug_output 'What would Player like to ' + @verb.red + '?'
 
     additional_input = Array.new(words)
+    additional_input.shift # remove first word
 
     if @direct_object.nil?
       # we could list all the openable objects in the room, but that is part of the mystery of this game.
@@ -67,19 +68,20 @@ class NonReflexiveCommand < Command
 
   def execute
     if @direct_object.nil?
-      puts @actor.name + ' ' + @verb + 's nothing.'
+      puts @actor.name + ' ' + @verb + 's nothing. ' + '(This is kindof an error, right?)'.black
     else
-      puts @actor.name + ' ' + @verb + 's ' + @direct_object.simple_label + '.'
+      $player.debug_output @actor.name + ' ' + @verb + 's ' + @direct_object.simple_label + '.'
 
       # oh shit. this is the hard part.
+      # first, if the verb is something that the object was born to do, it will have a method by that name - eg a door will open
       if @direct_object.respond_to? @verb.to_sym
         @direct_object.send @verb, [@actor, @words]
-      elsif @direct_object.respond_to? :respond # which would be a method that takes the verb and actor, etc, and can handle the command.
-        raise 'respond methods not yet written' # unnec, i know.
-      elsif defined?(@direct_object.response_narratives) && @direct_object.response_narratives.respond_to?(:key?) && @direct_object.response_narratives.key?(@verb.to_sym)
-        puts @direct_object.response_narratives[@verb.to_sym]
-      elsif defined?(@direct_object.response_narratives) && @direct_object.response_narratives.respond_to?(:key?) && @direct_object.response_narratives.key?(:any)
-        puts @direct_object.response_narratives[:any]
+
+      # otherwise it needs to have responses handled by the responds module
+      elsif @direct_object.respond_to? :respond
+        @direct_object.respond @verb, @actor, @words
+
+      # this should be uncommon:
       else
         puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
       end
