@@ -1,12 +1,12 @@
 --- !ruby/object:Player
 name: default
-location_id: 2015-02-27_ab46be2cf3297e4d
+location_id: 2015-02-28_ab46be2cf3297e4d
 outfit: 
 debug_output_level: 0
 file_safe_name: 
 game: 
 locations:
-  2015-02-27_ab46be2cf3297e4d: !ruby/object:Location
+  2015-02-28_ab46be2cf3297e4d: !ruby/object:Location
     sys_name: 
     map_name: A closet
     short_name: A closet
@@ -16,36 +16,41 @@ locations:
         begin: 0
         end: 19
         excl: false
-      : :briefly: It feels like you are in a closet. You can feel some boxes and clothes.
-        :in_detail: It feels like you are in a closet. You can feel some boxes and
-          clothes. It is maybe four feet deep and three feet across. A tiny amount
-          of light creeps in under the door.
+      : :briefly: It feels like you are in a closet. You are competing for space with
+          some hanging clothes.
+        :in_detail: It feels like you are in a closet. You are among dozens of hanging
+          clothing items. It is maybe four feet deep and three feet across.
       ? !ruby/range
         begin: 20
         end: 99
         excl: false
-      : :briefly: You are in a clothes closet. There are boxes and clothes hanging.
-        :in_detail: This clothes closet has several shoe boxes stacked up and dozens
-          of mens shirts and jackets hanging on a rod.
-    illumination_level: 10
-    id: 2015-02-27_ab46be2cf3297e4d
+      : :briefly: You are in a clothes closet. There many clothing items hanging.
+        :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
+          on a rod. It is maybe four feet deep and three feet across.
+    id: 2015-02-28_ab46be2cf3297e4d
     locations: []
+    shine_level: 0
     contents: !ruby/object:Contents_
       contents:
-        0f41d049876d9b4f: !ruby/object:Item
+        815574e2d88e6d03: !ruby/object:Item
           description_data:
             ? !ruby/range
               begin: 0
               end: 99
               excl: false
             : :any: Some shoeboxes are stacked in a corner.
-          id: 0f41d049876d9b4f
+          id: 815574e2d88e6d03
           labels_player_might_use_to_refer_to_this:
+          - Item
           - box
           - boxes
           - shoeboxes
           responses:
             :move: There isn’t much room. You shift the boxes a few inches, but nothing
+              happens.
+            :push: There isn’t much room. You shift the boxes a few inches, but nothing
+              happens.
+            :pull: There isn’t much room. You shift the boxes a few inches, but nothing
               happens.
             :any: Really? They are just some old shoeboxes. Nothing happens.
             :kill: !ruby/object:Response
@@ -53,7 +58,32 @@ locations:
               method: :stop
               narrative: Really? You want to kill the shoe box? You must be a maniac.
                 You will not enjoy this game. Go find something else to do.
-  2015-02-27_c6d4bff85e1ccd23: !ruby/object:Location
+        d3c1806ce92b116d: &1 !ruby/object:Light
+          description_data: {}
+          id: d3c1806ce92b116d
+          shine_level_when_lit: 40
+          shine_level: 0
+        777bd01866fbae64: !ruby/object:Switch
+          description_data:
+            ? !ruby/range
+              begin: 10
+              end: 19
+              excl: false
+            : :any: A thin chain dangles from above.
+            ? !ruby/range
+              begin: 20
+              end: 99
+              excl: false
+            : :any: A thin pull chain dangles from a light in the cieling.
+          id: 777bd01866fbae64
+          labels_player_might_use_to_refer_to_this:
+          - Switch
+          - pullchain
+          - chain
+          - pull_chain
+          togglees:
+          - *1
+  2015-02-28_c6d4bff85e1ccd23: !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -67,28 +97,37 @@ locations:
         :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
           the wall, is neatly made with an orange blanket on top and two pillows.
           The walls are also orange.
-    illumination_level: 60
-    id: 2015-02-27_c6d4bff85e1ccd23
+    id: 2015-02-28_c6d4bff85e1ccd23
     locations: []
+    shine_level: 60
 portals:
-  931ce4052ed9146a1c1ef96a1da1320b: !ruby/object:Portal
-    location_a_id: 2015-02-27_ab46be2cf3297e4d
-    location_b_id: 2015-02-27_c6d4bff85e1ccd23
-    door_a: &1 !ruby/object:Door
+  dc48ffc133c94d5f49d483660d30c219: !ruby/object:Portal
+    location_a_id: 2015-02-28_ab46be2cf3297e4d
+    location_b_id: 2015-02-28_c6d4bff85e1ccd23
+    door_a: &2 !ruby/object:Door
       this_side_state: :shut
       description_data:
         ? !ruby/range
           begin: 0
+          end: 19
+          excl: false
+        : :briefly: Light breaks in under a door.
+          :in_detail: Light breaks in under a normal interior house door. There is
+            a door knob.
+        ? !ruby/range
+          begin: 20
           end: 99
           excl: false
-        : :briefly: a normal door.
-          :in_detail: A normal house door. Twisting a round knob to one side will
-            open it. It is probably painted white. Jeez.
+        : :briefly: There is a normal household door.
+          :in_detail: A normal interior house door. Twisting a round knob to one side
+            will open it. It seems to be painted white.
       labels_player_might_use_to_refer_to_this:
+      - Door
       - door
       - bedroom-door
-    door_b: *1
-    id: 931ce4052ed9146a1c1ef96a1da1320b
+      shine_level: 10
+    door_b: *2
+    id: dc48ffc133c94d5f49d483660d30c219
 description_data:
   ? !ruby/range
     begin: 0

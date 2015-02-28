@@ -21,3 +21,5 @@ class LookCommand < NonReflexiveCommand
   end
 
 end
+
+

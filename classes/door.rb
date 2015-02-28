@@ -1,8 +1,9 @@
 require 'describable'
+require 'shines'
 
 class Door
 
-  include Describable
+  include Describable, Shines
 
   def initialize
     @this_side_location_id

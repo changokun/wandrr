@@ -19,7 +19,7 @@ module Describable
  #  }
 
   def might_be_called labels
-    @labels_player_might_use_to_refer_to_this ||= []
+    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
     # todo soften things like plurals and misspleeings.
     @labels_player_might_use_to_refer_to_this.push *labels
   end
@@ -30,11 +30,13 @@ module Describable
   end
 
   def could_be_called? label
+    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
     # todo soften things like plurals and misspleeings.
     @labels_player_might_use_to_refer_to_this.include? label
   end
 
   def simple_label
+    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
     return @labels_player_might_use_to_refer_to_this[0] if @labels_player_might_use_to_refer_to_this.length > 0
     return self.class.to_s
   end
@@ -43,11 +45,10 @@ module Describable
     actor ||= $player
     #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 
-    $player.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (lighting: ' + actor.location.illumination_level.to_s + ')'
-    # p @description_data
+    $player.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + '(illum: ' + actor.location.get_illumination_level.to_s + ').'
 
     @description_data.each do | illumination_level, descriptions |
-      if illumination_level.include? actor.location.illumination_level
+      if illumination_level.include? actor.location.get_illumination_level
         puts descriptions[:all] if descriptions.key? :all
         if descriptions.key? depth
           puts descriptions[depth]
@@ -61,6 +62,11 @@ module Describable
 
   def set_descriptions descriptions
     @description_data = descriptions
+  end
+
+  def does_not_get_described
+    # maybe this should be a flag so that we don't erase data we want to discribe with later.
+    @description_data = {}
   end
 
   def add_description description, illumination_level=0..99, depth=:any

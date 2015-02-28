@@ -16,9 +16,13 @@ module Responds
 
   end
 
-  def add_response verb, actions
+  def add_response verbs, actions
     @responses ||= {}
-    @responses[verb] = actions
+    verbs = verbs.to_sym if verbs.is_a? String
+    verbs = [verbs] if verbs.is_a? Symbol
+    verbs.each do | verb |
+      @responses[verb] = actions
+    end
   end
 
   def add_responses data

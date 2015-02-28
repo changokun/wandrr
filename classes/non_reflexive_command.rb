@@ -7,7 +7,7 @@ class NonReflexiveCommand < Command
 
     @direct_object ||= nil
 
-    # is one of the words an object that can be looked at?
+    # is one of the words an object that can be looked at/pushed around/killed, etc?
     $player.debug_output 'What would Player like to ' + @verb.red + '?'
 
     additional_input = Array.new(words)
@@ -39,7 +39,10 @@ class NonReflexiveCommand < Command
 
         if @direct_object.nil?
           # does word refer to room items?
-          @actor.location.contents.each { | item | @direct_object = item if item.could_be_called? word }
+          @actor.location.contents.each { | item | 
+            # puts item.to_yaml
+            @direct_object = item if item.could_be_called? word # and is visible. ie... has a desciption set for this light level
+          }
         end
 
         if @direct_object.nil?
@@ -68,26 +71,28 @@ class NonReflexiveCommand < Command
 
   def execute
     if @direct_object.nil?
-      puts @actor.name + ' ' + @verb + 's nothing. ' + '(This is kindof an error, right?)'.black
+      puts @actor.name + ' ' + @verb + 's nothing. ' + '(This is a kind of error, right?)'.black
     else
       $player.debug_output @actor.name + ' ' + @verb + 's ' + @direct_object.simple_label + '.'
 
       # oh shit. this is the hard part.
       # first, if the verb is something that the object was born to do, it will have a method by that name - eg a door will open
       if @direct_object.respond_to? @verb.to_sym
-        @direct_object.send @verb, [@actor, @words]
+        @direct_object.send @verb, @actor, @words
 
       # otherwise it needs to have responses handled by the responds module
       elsif @direct_object.respond_to? :respond
         @direct_object.respond @verb, @actor, @words
-
-      # this should be uncommon:
+           
       else
-        puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
+        admit_defeat     
       end
     end
   end
 
+  def admit_defeat
+    puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
+  end
 
 
 end
