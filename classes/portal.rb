@@ -30,11 +30,31 @@ class Portal
     raise TypeError unless location_a.is_a? Location and door_a.is_a? Door
     # loc b is currently optional, for false doors. hmmm
 
+    # these may not be needed
     @location_a_id = location_a.id
     @location_b_id = location_b.id
 
     @door_a = door_a
     @door_b = door_b
+
+    # these may not be needed
+    @door_a.portal = self
+    @door_b.portal = self
+
+    # but these should be needed
+    @door_a.other_side_location_id = location_b.id
+    @door_b.other_side_location_id = location_a.id
+
+    @door_a.this_side_location_id = location_a.id
+    @door_b.this_side_location_id = location_b.id
+
+    @door_a.other_side_location = location_b
+    @door_b.other_side_location = location_a
+
+    @door_a.this_side_location = location_a
+    @door_b.this_side_location = location_b
+
+
 
     @id = Digest::MD5.hexdigest(@location_a_id.to_s + @location_b_id.to_s)
 

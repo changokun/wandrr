@@ -19,7 +19,7 @@ module Describable
  #  }
 
   def might_be_called labels
-    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
+    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s.downcase]
     # todo soften things like plurals and misspleeings.
     @labels_player_might_use_to_refer_to_this.push *labels
   end

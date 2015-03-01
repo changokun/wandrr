@@ -13,12 +13,13 @@ class Being
     @location_id ||= location_id
   end
 
-  def change_location location
+  def change_location destination
 
-    p location
+    @location = destination
+    @location_id = destination.id
 
-    abort 'now make that loc change happen'
-    # pass an id or a Location? either way, get the location.
+    puts name + ' moves to ' + destination.name + '.'
+
     # check if you can get from current location to location
     # make any checks, event hooks, etc.
     # not sure how we track this..... is it a ref already? how do I keep it that way?

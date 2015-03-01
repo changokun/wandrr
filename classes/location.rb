@@ -72,7 +72,16 @@ class Location
     doors
   end
 
+  def name
+    @short_name.cyan
+  end
 
 
+
+  # wait, is this duncitonality duplicated?
+  def self.get_by_id id
+    abort id.to_s
+    $player.locations[id]
+  end
 
 end

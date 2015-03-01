@@ -6,7 +6,7 @@ debug_output_level: 0
 file_safe_name: 
 game: 
 locations:
-  2015-02-28_ab46be2cf3297e4d: !ruby/object:Location
+  2015-02-28_ab46be2cf3297e4d: &4 !ruby/object:Location
     sys_name: 
     map_name: A closet
     short_name: A closet
@@ -32,16 +32,22 @@ locations:
     shine_level: 0
     contents: !ruby/object:Contents_
       contents:
-        815574e2d88e6d03: !ruby/object:Item
+        ee9dd7f060140fbe: !ruby/object:Item
           description_data:
             ? !ruby/range
               begin: 0
+              end: 19
+              excl: false
+            : :any: Some boxes are stacked in a corner.
+            ? !ruby/range
+              begin: 20
               end: 99
               excl: false
-            : :any: Some shoeboxes are stacked in a corner.
-          id: 815574e2d88e6d03
+            : :briefly: Six shoeboxes are stacked in a corner.
+              :in_detail: Six mens shoe boxes are stacked in the corner.
+          id: ee9dd7f060140fbe
           labels_player_might_use_to_refer_to_this:
-          - Item
+          - item
           - box
           - boxes
           - shoeboxes
@@ -58,12 +64,12 @@ locations:
               method: :stop
               narrative: Really? You want to kill the shoe box? You must be a maniac.
                 You will not enjoy this game. Go find something else to do.
-        d3c1806ce92b116d: &1 !ruby/object:Light
+        555d361b47a746ff: &1 !ruby/object:Light
           description_data: {}
-          id: d3c1806ce92b116d
+          id: 555d361b47a746ff
           shine_level_when_lit: 40
           shine_level: 0
-        777bd01866fbae64: !ruby/object:Switch
+        51f738b8f93eaa5b: !ruby/object:Switch
           description_data:
             ? !ruby/range
               begin: 10
@@ -74,16 +80,16 @@ locations:
               begin: 20
               end: 99
               excl: false
-            : :any: A thin pull chain dangles from a light in the cieling.
-          id: 777bd01866fbae64
+            : :any: A thin pull chain dangles from a light in the ceiling.
+          id: 51f738b8f93eaa5b
           labels_player_might_use_to_refer_to_this:
-          - Switch
+          - switch
           - pullchain
           - chain
           - pull_chain
           togglees:
           - *1
-  2015-02-28_c6d4bff85e1ccd23: !ruby/object:Location
+  2015-02-28_c6d4bff85e1ccd23: &3 !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -101,11 +107,19 @@ locations:
     locations: []
     shine_level: 60
 portals:
-  dc48ffc133c94d5f49d483660d30c219: !ruby/object:Portal
+  dc48ffc133c94d5f49d483660d30c219: &2 !ruby/object:Portal
     location_a_id: 2015-02-28_ab46be2cf3297e4d
     location_b_id: 2015-02-28_c6d4bff85e1ccd23
-    door_a: &2 !ruby/object:Door
+    door_a: !ruby/object:Door
       this_side_state: :shut
+      light_transmission_factor:
+        :open: 0.6
+        :ajar: 0.3
+        :cracked: 0.1
+        :closed: 0.05
+        :what: what do you mean this is too detailed? i did not even add teh sound
+          transmission factors, yet!
+      portal: *2
       description_data:
         ? !ruby/range
           begin: 0
@@ -122,11 +136,40 @@ portals:
           :in_detail: A normal interior house door. Twisting a round knob to one side
             will open it. It seems to be painted white.
       labels_player_might_use_to_refer_to_this:
-      - Door
       - door
-      - bedroom-door
+      - bedroom_door
+      - bedroom
       shine_level: 10
-    door_b: *2
+      other_side_location_id: 2015-02-28_c6d4bff85e1ccd23
+      this_side_location_id: 2015-02-28_ab46be2cf3297e4d
+      other_side_location: *3
+      this_side_location: *4
+    door_b: !ruby/object:Door
+      this_side_state: :shut
+      light_transmission_factor:
+        :open: 0.6
+        :ajar: 0.3
+        :cracked: 0.1
+        :closed: 0.05
+        :what: what do you mean this is too detailed? i did not even add teh sound
+          transmission factors, yet!
+      portal: *2
+      description_data:
+        ? !ruby/range
+          begin: 0
+          end: 99
+          excl: false
+        : :briefly: There is a closet door.
+          :in_detail: There is a normal interior house door, you know, with a knob
+            and everything, leading to a closet. Where you were earlier.
+      labels_player_might_use_to_refer_to_this:
+      - door
+      - closet_door
+      - closet
+      other_side_location_id: 2015-02-28_ab46be2cf3297e4d
+      this_side_location_id: 2015-02-28_c6d4bff85e1ccd23
+      other_side_location: *4
+      this_side_location: *3
     id: dc48ffc133c94d5f49d483660d30c219
 description_data:
   ? !ruby/range

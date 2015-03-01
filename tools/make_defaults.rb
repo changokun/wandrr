@@ -38,8 +38,18 @@ description_data = {
   }
 closet.set_descriptions description_data
 
-boxes = Item.new 'Some shoeboxes are stacked in a corner.'
+boxes = Item.new
 boxes.might_be_called %w{box boxes shoeboxes}
+description_data = {
+    0..19 => {
+      :any => 'Some boxes are stacked in a corner.'
+    },
+    20..99 => {
+      :briefly => 'Six shoeboxes are stacked in a corner.',
+      :in_detail => 'Six mens shoe boxes are stacked in the corner.'
+    }
+  }
+boxes.set_descriptions description_data
 boxes.add_response [:move, :push, :pull], 'There isn’t much room. You shift the boxes a few inches, but nothing happens.'
 boxes.add_response :any, 'Really? They are just some old shoeboxes. Nothing happens.'
 boxes.add_response :kill, Response.new(:game, :stop, 'Really? You want to kill the shoe box? You must be a maniac. You will not enjoy this game. Go find something else to do.')
@@ -60,7 +70,7 @@ description_data = {
       :any => 'A thin chain dangles from above.'
     },
     20..99 => {
-      :any => 'A thin pull chain dangles from a light in the cieling.'
+      :any => 'A thin pull chain dangles from a light in the ceiling.'
     }
   }
 pullchain.set_descriptions description_data
@@ -92,7 +102,7 @@ player.locations[bedroom.id] = bedroom
 
 # let us connect those two.
 # need two Door objects - not really. same door both sides.
-door = Door.new
+door_a = Door.new
 description_data = {
     0..19 => {
       :briefly => 'Light breaks in under a door.',
@@ -103,10 +113,22 @@ description_data = {
       :in_detail => 'A normal interior house door. Twisting a round knob to one side will open it. It seems to be painted white.'
     }
   }
-door.set_descriptions description_data
-door.might_be_called %w{door bedroom-door}
-door.set_shine_level IlluminationLevel::DARK # some light coming in under the door
-portal = Portal.new closet, door, bedroom, door
+door_a.set_descriptions description_data
+door_a.might_be_called %w{bedroom_door bedroom}
+door_a.set_shine_level IlluminationLevel::DARK # some light coming in under the door
+
+door_b = Door.new
+description_data = {
+    0..99 => {
+      :briefly => 'There is a closet door.',
+      :in_detail => 'There is a normal interior house door, you know, with a knob and everything, leading to a closet. Where you were earlier.'
+    }
+  }
+door_b.set_descriptions description_data
+door_b.might_be_called %w{closet_door closet}
+
+
+portal = Portal.new closet, door_a, bedroom, door_b
 
 player.portals[portal.id] = portal
 
