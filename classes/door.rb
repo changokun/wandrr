@@ -1,9 +1,10 @@
 require 'describable'
 require 'shines'
+require 'player_awareness'
 
 class Door
 
-  include Describable, Shines
+  include Describable, Shines, PlayerAwareness
 
   attr_writer :portal, :other_side_location_id, :this_side_location_id, :other_side_location, :this_side_location
 

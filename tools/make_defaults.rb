@@ -41,11 +41,8 @@ closet.set_descriptions description_data
 boxes = Item.new
 boxes.might_be_called %w{box boxes shoeboxes}
 description_data = {
-    0..19 => {
-      :any => 'Some boxes are stacked in a corner.'
-    },
     20..99 => {
-      :briefly => 'Six shoeboxes are stacked in a corner.',
+      :briefly => 'Some boxes are stacked in a corner.',
       :in_detail => 'Six mens shoe boxes are stacked in the corner.'
     }
   }
@@ -66,7 +63,7 @@ pullchain.might_be_called %w{pullchain chain pull_chain} # underscores not worke
 pullchain.toggles light
 description_data = {
     # can't find it in abs dark
-    10..19 => { 
+    0..19 => { 
       :any => 'A thin chain dangles from above.'
     },
     20..99 => {
@@ -104,10 +101,6 @@ player.locations[bedroom.id] = bedroom
 # need two Door objects - not really. same door both sides.
 door_a = Door.new
 description_data = {
-    0..19 => {
-      :briefly => 'Light breaks in under a door.',
-      :in_detail => 'Light breaks in under a normal interior house door. There is a door knob.'
-    },
     20..99 => {
       :briefly => 'There is a normal household door.',
       :in_detail => 'A normal interior house door. Twisting a round knob to one side will open it. It seems to be painted white.'
@@ -115,7 +108,6 @@ description_data = {
   }
 door_a.set_descriptions description_data
 door_a.might_be_called %w{bedroom_door bedroom}
-door_a.set_shine_level IlluminationLevel::DARK # some light coming in under the door
 
 door_b = Door.new
 description_data = {

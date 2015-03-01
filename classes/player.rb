@@ -8,7 +8,7 @@ class Player < ArticulateAnimal
   def initialize name = nil
     super
     @name = 'default' # because the only way to get a real one is by loading data files. see factory
-    @debug_output_level = 0
+    @debug_output_level = 1
     @file_safe_name = nil
     @game = nil # will hold a ref to the running game. should not be marshaled.
 
@@ -24,7 +24,7 @@ class Player < ArticulateAnimal
     str << ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
 
     if @debug_output_level >= level
-      puts ("\n[#{str}]\n").black
+      puts '['.black + str.black + ']'.black
       return true
     end
     return false

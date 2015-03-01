@@ -2,7 +2,7 @@
 name: default
 location_id: 2015-02-28_ab46be2cf3297e4d
 outfit: 
-debug_output_level: 0
+debug_output_level: 1
 file_safe_name: 
 game: 
 locations:
@@ -32,25 +32,20 @@ locations:
     shine_level: 0
     contents: !ruby/object:Contents_
       contents:
-        ee9dd7f060140fbe: !ruby/object:Item
+        17bb4c0a6f74cf03: !ruby/object:Item
           description_data:
-            ? !ruby/range
-              begin: 0
-              end: 19
-              excl: false
-            : :any: Some boxes are stacked in a corner.
             ? !ruby/range
               begin: 20
               end: 99
               excl: false
-            : :briefly: Six shoeboxes are stacked in a corner.
+            : :briefly: Some boxes are stacked in a corner.
               :in_detail: Six mens shoe boxes are stacked in the corner.
-          id: ee9dd7f060140fbe
+          id: 17bb4c0a6f74cf03
           labels_player_might_use_to_refer_to_this:
-          - item
           - box
           - boxes
           - shoeboxes
+          - item
           responses:
             :move: There isn’t much room. You shift the boxes a few inches, but nothing
               happens.
@@ -64,15 +59,15 @@ locations:
               method: :stop
               narrative: Really? You want to kill the shoe box? You must be a maniac.
                 You will not enjoy this game. Go find something else to do.
-        555d361b47a746ff: &1 !ruby/object:Light
+        28e8bdfbfa50f12f: &1 !ruby/object:Light
           description_data: {}
-          id: 555d361b47a746ff
+          id: 28e8bdfbfa50f12f
           shine_level_when_lit: 40
           shine_level: 0
-        51f738b8f93eaa5b: !ruby/object:Switch
+        97fc22c3ec720669: !ruby/object:Switch
           description_data:
             ? !ruby/range
-              begin: 10
+              begin: 0
               end: 19
               excl: false
             : :any: A thin chain dangles from above.
@@ -81,12 +76,12 @@ locations:
               end: 99
               excl: false
             : :any: A thin pull chain dangles from a light in the ceiling.
-          id: 51f738b8f93eaa5b
+          id: 97fc22c3ec720669
           labels_player_might_use_to_refer_to_this:
-          - switch
           - pullchain
           - chain
           - pull_chain
+          - switch
           togglees:
           - *1
   2015-02-28_c6d4bff85e1ccd23: &3 !ruby/object:Location
@@ -122,13 +117,6 @@ portals:
       portal: *2
       description_data:
         ? !ruby/range
-          begin: 0
-          end: 19
-          excl: false
-        : :briefly: Light breaks in under a door.
-          :in_detail: Light breaks in under a normal interior house door. There is
-            a door knob.
-        ? !ruby/range
           begin: 20
           end: 99
           excl: false
@@ -136,10 +124,9 @@ portals:
           :in_detail: A normal interior house door. Twisting a round knob to one side
             will open it. It seems to be painted white.
       labels_player_might_use_to_refer_to_this:
-      - door
       - bedroom_door
       - bedroom
-      shine_level: 10
+      - door
       other_side_location_id: 2015-02-28_c6d4bff85e1ccd23
       this_side_location_id: 2015-02-28_ab46be2cf3297e4d
       other_side_location: *3
@@ -163,9 +150,9 @@ portals:
           :in_detail: There is a normal interior house door, you know, with a knob
             and everything, leading to a closet. Where you were earlier.
       labels_player_might_use_to_refer_to_this:
-      - door
       - closet_door
       - closet
+      - door
       other_side_location_id: 2015-02-28_ab46be2cf3297e4d
       this_side_location_id: 2015-02-28_c6d4bff85e1ccd23
       other_side_location: *4

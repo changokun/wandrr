@@ -48,13 +48,17 @@ class Wandrr
 
   def get_player_command
     command = nil
-    until command do
-      raw_command = ''
-      until raw_command.length > 0 do
-        raw_command = gets.strip
+    begin
+      until command do
+        raw_command = ''
+        until raw_command.length > 0 do
+          raw_command = gets.strip
+        end
+        command = CommandFactory::parse_input_string raw_command
+        prompt 'Huh?' if command.nil?
       end
-      command = CommandFactory::parse_input_string raw_command
-      prompt 'Huh?' if command.nil?
+    rescue
+      command = NullCommand.new [], 'system'
     end
     puts '' unless $player.debug_output command.class.to_s + ' accepted.'
     return command

@@ -1,4 +1,8 @@
+require 'player_awareness'
+
 class Switch < Item
+
+  include PlayerAwareness
 
 
   # command receiver.

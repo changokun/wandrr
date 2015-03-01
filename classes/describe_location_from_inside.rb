@@ -12,18 +12,18 @@ class DescribeLocationFromInside < Describe
     # sort describable_things
     # 
 
-    describable_things.sort! do |a, b|
-      case
-      when a.respond_to?(:get_shine_level) == false || b.respond_to?(:get_shine_level) == false
-        nil
-      when a.get_shine_level < b.get_shine_level
-        1
-      when a.get_shine_level > b.get_shine_level
-        -1
-      else
-        nil
-      end
-    end 
+    # describable_things.sort! do |a, b|
+    #   puts a.get_shine_level.to_s
+    #   puts b.get_shine_level.to_s
+    #   return nil unless a.respond_to?(:get_shine_level) && b.respond_to?(:get_shine_level)
+    #   case
+    #   when a.get_shine_level < b.get_shine_level
+    #     1
+    #   when a.get_shine_level > b.get_shine_level
+    #     -1
+    #   end
+    #   nil
+    # end 
 
 
     # abort describable_things.to_yaml

@@ -1,7 +1,8 @@
 require 'shines'
+require 'player_awareness'
 
 class Light < Item
-  include Shines
+  include Shines, PlayerAwareness
 
   def is_lit! level = 50
     @shine_level_when_lit = level

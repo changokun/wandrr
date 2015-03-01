@@ -28,6 +28,7 @@ class GoCommand < ReflexiveCommand
             word = gets
             word.gsub! /[^a-z0-9\- ]+/i, ' '
             word.strip!
+            raise 'Nevermind' if %w{nvm nevermind}.include? word.downcase
           end
         end
 
@@ -35,15 +36,16 @@ class GoCommand < ReflexiveCommand
         # i guess that means loop thru everything in the room, one level deep.
         # atm that means only doors.
         @actor.location.doors.each do | door |
-          @destination = door.destination if door.could_be_called? word
-        end
-
-        if @destination.nil?
-          # does word refer to room items?
-          @actor.location.contents.each { | item | 
-            # puts item.to_yaml
-            @destination = item if item.could_be_called? word # and is visible. ie... has a desciption set for this light level
-          }
+           
+          if door.could_be_called? word
+            if door.is_a? PlayerAwareness
+              if door.is_known?
+                @destination = door.destination
+              end
+            else
+              @destination = door.destination
+            end
+          end
         end
 
         if @destination.nil?
@@ -55,7 +57,7 @@ class GoCommand < ReflexiveCommand
         end
 
         if @destination.nil?
-          puts 'I’m not sure that you can ' + word.red + ' that way.'
+          puts 'I’m not sure that you can ' + @verb.red + ' that way.'
         end
 
       end

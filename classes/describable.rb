@@ -21,7 +21,7 @@ module Describable
   def might_be_called labels
     @labels_player_might_use_to_refer_to_this ||= [self.class.to_s.downcase]
     # todo soften things like plurals and misspleeings.
-    @labels_player_might_use_to_refer_to_this.push *labels
+    @labels_player_might_use_to_refer_to_this.unshift *labels
   end
 
   def is_describable?
@@ -43,19 +43,17 @@ module Describable
 
   def describe depth, actor = nil
     actor ||= $player
-    #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
+    description = get_description depth, actor
+    if description.length > 0
+      $player.debug_output 'Describe ' + self.simple_label + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (illumination: ' + actor.location.get_illumination_level.to_s + ').'
 
-    $player.debug_output __method__.to_s + ' ' + self.class.to_s + ' ' + depth.to_s + ' to ' + actor.class.to_s + '(illum: ' + actor.location.get_illumination_level.to_s + ').'
-
-    @description_data.each do | illumination_level, descriptions |
-      if illumination_level.include? actor.location.get_illumination_level
-        puts descriptions[:all] if descriptions.key? :all
-        if descriptions.key? depth
-          puts descriptions[depth]
-        elsif descriptions.key? :any
-          puts descriptions[:any]
-        end
+      puts description
+      if self.is_a? PlayerAwareness
+        self.is_known!
       end
+    else
+      $player.debug_output 'No description provided for ' + self.simple_label + ' at illumination level ' + actor.location.get_illumination_level.to_s + ', so it remains invisible.'
+
     end
 
   end
@@ -83,7 +81,24 @@ module Describable
 
   private
 
+  def get_description depth, actor = nil
+    actor ||= $player
+    #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 
+    @description_data.each do | illumination_level, descriptions |
+      if illumination_level.include? actor.location.get_illumination_level
+        return descriptions[:all] if descriptions.key? :all
+        if descriptions.key? depth
+          return descriptions[depth]
+        elsif descriptions.key? :any
+          return descriptions[:any]
+        end
+      end
+    end
+
+    ''
+
+  end
 
 
 end

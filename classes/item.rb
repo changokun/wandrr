@@ -1,12 +1,13 @@
 require 'describable'
 require 'responds'
 require 'securerandom'
+require 'player_awareness'
 
 class Item
 
   attr_reader :id
 
-  include Describable, Responds
+  include Describable, Responds, PlayerAwareness
 
   def initialize description = 'There is a simple thing.'
     self.add_description description unless description.nil?
