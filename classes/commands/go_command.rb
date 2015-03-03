@@ -21,16 +21,7 @@ class GoCommand < ReflexiveCommand
 
         word = additional_input.shift if additional_input.length > 0
 
-        if word.nil?
-          $player.game.prompt 'Where would you like to ' + @verb.red + ' (to)?'
-          word = ''
-          until word.length > 0 do
-            word = gets
-            word.gsub! /[^a-z0-9\- ]+/i, ' '
-            word.strip!
-            raise 'Nevermind' if %w{nvm nevermind}.include? word.downcase
-          end
-        end
+        word = Prompt.call 'Where would you like to ' + @verb.red + ' (to)?' if word.nil?
 
         # does word refer to any doors in the room?
         # i guess that means loop thru everything in the room, one level deep.

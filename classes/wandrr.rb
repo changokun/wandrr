@@ -30,8 +30,7 @@ class Wandrr
   end
 
   def run
-    prompt
-    player_command = get_player_command
+    player_command = prompt_for_command
     unless player_command.is_a? SystemCommand
       act_as_player player_command
       describe_environment
@@ -41,27 +40,25 @@ class Wandrr
     end
   end
 
-  def prompt str = nil
-    str ||= 'What would you like to do?'
-    print "\n" + str + " > "
-  end
-
-  def get_player_command
+  def prompt_for_command
     command = nil
     begin
       until command do
-        raw_command = ''
-        until raw_command.length > 0 do
-          raw_command = gets.strip
-        end
+        raw_command = Prompt.call 'What would you like to do?', false
         command = CommandFactory::parse_input_string raw_command
-        prompt 'Huh?' if command.nil?
+        if command.nil?
+          puts 'I do not understand.'.green
+        end
       end
     rescue
       command = NullCommand.new [], 'system'
     end
-    puts '' unless $player.debug_output command.class.to_s + ' accepted.'
+    # puts '' unless 
+    $player.debug_output command.class.to_s + ' accepted.'
     return command
+  end
+
+  def get_player_command
   end
 
   def act_as_player command
