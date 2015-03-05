@@ -22,13 +22,13 @@ class NonReflexiveCommand < Command
         # does word refer to anything in the room?
         # i guess that means loop thru everything in the room, one level deep.
         # atm that means only doors.
-        @actor.location.doors.each do | door |
+        @actor.location.doors.each do |door|
           @direct_object = door if door.could_be_called? word
         end
 
         if @direct_object.nil?
           # does word refer to room items?
-          @actor.location.contents.each { | item | 
+          @actor.location.contents.each { |item|
             # puts item.to_yaml
             @direct_object = item if item.could_be_called? word # and is visible. ie... has a desciption set for this light level
           }
