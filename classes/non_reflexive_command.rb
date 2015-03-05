@@ -15,27 +15,30 @@ class NonReflexiveCommand < Command
 
     if @direct_object.nil?
       # we could list all the openable objects in the room, but that is part of the mystery of this game.
-      while @direct_object.nil? do
+      while @direct_object.nil? do # note: this loop can be exited through the prompt/raise
         word = nil
 
-        word = additional_input.shift if additional_input.length > 0
+        word ||= additional_input.shift if additional_input.length > 0
 
-        word = Prompt.call 'What would you like to ' + @verb.red + ' (at/to)?' if word.nil?
+        word ||= Prompt.call 'What would you like to ' + @verb.red + ' (at/to)?'
 
         # does word refer to anything in the room?
         # i guess that means loop thru everything in the room, one level deep.
         # atm that means only doors.
         @actor.location.doors.each do | door |
-          @direct_object = door if door.could_be_called? word
+          @direct_object = door if door.could_be_called? word && door.is_known?
         end
 
         if @direct_object.nil?
           # does word refer to room items?
-          @actor.location.contents.each { | item | 
-            # puts item.to_yaml
-            @direct_object = item if item.could_be_called? word # and is visible. ie... has a desciption set for this light level
-          }
+          @actor.location.contents.each do | item | 
+            if item.could_be_called? word
+              print "#{item.simple_label.green} is known." if item.is_known?
+              @direct_object = item if item.is_known?
+            end
+          end
         end
+
 
         if @direct_object.nil?
           # does word refer to anything on player's person?

@@ -28,10 +28,10 @@ class Door
   def open actor = nil, words = nil
     # actor and words not needed yet, but they may finesse things in the future.
     if @this_side_state == :open
-      puts 'The ' + simple_label + ' is already open.'
+      puts "The #{simple_label} is already open."
     else
       @this_side_state = :open
-      puts 'You opened a ' + simple_label + '.'
+      puts "You opened the #{simple_label}."
       #queue up description?
       
     end
@@ -42,7 +42,7 @@ class Door
   def describe depth, actor = nil
     super
 
-    puts 'This ' + simple_label + ' is ' + @this_side_state.to_s + '.'
+    puts 'This ' + simple_label + ' is ' + @this_side_state.to_s + '.' if self.is_known?
   end
 
   def destination

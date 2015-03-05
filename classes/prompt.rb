@@ -29,7 +29,7 @@ class Prompt
       `stty #{state}`
     end
 
-    raise if escapable && ['', 'nvm', 'nevermind'].include?(raw_input) # just hit return to escape/nvm
+    raise NevermindError if escapable && ['', 'nvm', 'nevermind'].include?(raw_input) # just hit return to escape/nvm
     
     raw_input.gsub! /[\s]+/, ' '
     $player.debug_output '>' + raw_input + '<' 

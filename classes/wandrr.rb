@@ -50,7 +50,7 @@ class Wandrr
           puts 'I do not understand.'.green
         end
       end
-    rescue
+    rescue NevermindError
       command = NullCommand.new [], 'system'
     end
     # puts '' unless 
@@ -82,4 +82,5 @@ class Wandrr
 end
 
 
-
+class NevermindError < StandardError
+end
