@@ -18,8 +18,12 @@ module Describable
  #    }
  #  }
 
-  def might_be_called labels
+  def label_default
     @labels_player_might_use_to_refer_to_this ||= [self.class.to_s.downcase]
+  end
+
+  def might_be_called labels
+    label_default
     # todo soften things like plurals and misspleeings.
     @labels_player_might_use_to_refer_to_this.unshift *labels
   end
@@ -30,15 +34,14 @@ module Describable
   end
 
   def could_be_called? label
-    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
+    label_default
     # todo soften things like plurals and misspleeings.
     @labels_player_might_use_to_refer_to_this.include? label
   end
 
   def simple_label
-    @labels_player_might_use_to_refer_to_this ||= [self.class.to_s]
-    return @labels_player_might_use_to_refer_to_this[0] if @labels_player_might_use_to_refer_to_this.length > 0
-    return self.class.to_s
+    label_default
+    return @labels_player_might_use_to_refer_to_this[0]
   end
 
   def describe depth, actor = nil

@@ -27,7 +27,10 @@ class Prompt
       end
     ensure
       `stty #{state}`
+      puts "" # need a newline now
     end
+
+    
 
     raise NevermindError if escapable && ['', 'nvm', 'nevermind'].include?(raw_input) # just hit return to escape/nvm
     

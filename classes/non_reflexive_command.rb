@@ -22,8 +22,13 @@ class NonReflexiveCommand < Command
         # does word refer to anything in the room?
         # i guess that means loop thru everything in the room, one level deep.
         # atm that means only doors.
-        @actor.location.doors.each do | door |
-          @direct_object = door if door.could_be_called? word && door.is_known?
+        if @direct_object.nil?
+          @actor.location.doors.each do | door |
+            if door.could_be_called? word
+              # print "#{door.simple_label.green} is known." if door.is_known?
+              @direct_object = door if door.is_known?
+            end
+          end
         end
 
         if @direct_object.nil?
@@ -59,9 +64,9 @@ class NonReflexiveCommand < Command
 
   def execute
     if @direct_object.nil?
-      puts "#{@actor.name} #{@verb}'s nothing. " + '(This is a kind of error, right?)'.black
+      puts "#{@actor.name} #{@verb}s nothing. " + '(This is a kind of error, right?)'.black
     else
-      $player.debug_output "#{@actor.name} #{@verb}'s #{@direct_object.simple_label}."
+      $player.debug_output "#{@actor.name} #{@verb}s #{@direct_object.simple_label}."
 
       # oh shit. this is the hard part.
       # first, if the verb is something that the object was born to do, it will have a method by that name - eg a door will open
