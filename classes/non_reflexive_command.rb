@@ -20,7 +20,7 @@ class NonReflexiveCommand < Command
 
         word = additional_input.shift if additional_input.length > 0
 
-        word = Prompt.call "What would you like to #{@verb.red} (at/to)?" if word.nil?
+        word ||= Prompt.call "What would you like to #{@verb.red} (at/to)?"
 
         # does word refer to anything in the room?
         # i guess that means loop thru everything in the room, one level deep.
