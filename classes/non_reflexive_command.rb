@@ -56,9 +56,9 @@ class NonReflexiveCommand < Command
 
   def execute
     if @direct_object.nil?
-      puts @actor.name + ' ' + @verb + 's nothing. ' + '(This is a kind of error, right?)'.black
+      puts "#{@actor.name} #{@verb}'s nothing. " + '(This is a kind of error, right?)'.black
     else
-      $player.debug_output @actor.name + ' ' + @verb + 's ' + @direct_object.simple_label + '.'
+      $player.debug_output "#{@actor.name} #{@verb}'s #{@direct_object.simple_label}."
 
       # oh shit. this is the hard part.
       # first, if the verb is something that the object was born to do, it will have a method by that name - eg a door will open
@@ -76,6 +76,6 @@ class NonReflexiveCommand < Command
   end
 
   def admit_defeat
-    puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
+    puts "Hmmm. You cannot figure out a way to #{@verb.magenta} the #{@direct_object.simple_label.yellow}"
   end
 end
