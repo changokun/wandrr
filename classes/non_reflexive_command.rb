@@ -1,7 +1,6 @@
 require 'command'
 
 class NonReflexiveCommand < Command
-
   def initialize words, actor = nil
     super
 
@@ -17,9 +16,7 @@ class NonReflexiveCommand < Command
       # we could list all the openable objects in the room, but that is part of the mystery of this game.
       while @direct_object.nil? do
         word = nil
-
         word = additional_input.shift if additional_input.length > 0
-
         word ||= Prompt.call "What would you like to #{@verb.red} (at/to)?"
 
         # does word refer to anything in the room?
@@ -55,11 +52,7 @@ class NonReflexiveCommand < Command
     if @direct_object.nil?
       puts 'We need to figure out how to get a direct object for your command, but we will roll without one for now'.green
     end
-
   end
-
-
-
 
   def execute
     if @direct_object.nil?
@@ -85,6 +78,4 @@ class NonReflexiveCommand < Command
   def admit_defeat
     puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
   end
-
-
 end
