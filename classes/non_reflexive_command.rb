@@ -8,7 +8,7 @@ class NonReflexiveCommand < Command
     @direct_object ||= nil
 
     # is one of the words an object that can be looked at/pushed around/killed, etc?
-    $player.debug_output 'What would Player like to ' + @verb.red + '?'
+    $player.debug_output "What would Player like to #{@verb.red}?"
 
     additional_input = Array.new(words)
     additional_input.shift # remove first word
@@ -20,7 +20,7 @@ class NonReflexiveCommand < Command
 
         word = additional_input.shift if additional_input.length > 0
 
-        word = Prompt.call 'What would you like to ' + @verb.red + ' (at/to)?' if word.nil?
+        word = Prompt.call "What would you like to #{@verb.red} (at/to)?" if word.nil?
 
         # does word refer to anything in the room?
         # i guess that means loop thru everything in the room, one level deep.
@@ -46,7 +46,7 @@ class NonReflexiveCommand < Command
         end
 
         if @direct_object.nil?
-          puts 'I’m not sure there is a(ny) ' + word.red + ' here.'
+          puts "I’m not sure there is a(ny) #{word.red} here."
         end
 
       end
