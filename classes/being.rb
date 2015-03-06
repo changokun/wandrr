@@ -49,5 +49,14 @@ class Being
   def container
     self.location
   end
+
+  def name
+    # todo have color reflect condition? move from white (well) to yellow to orange to red (near death)
+    @name.magenta
+  end
+
+  def update actor, command
+    puts "#{self.name} observes #{actor.name}’s #{command.class.to_s}"
+  end
   
 end

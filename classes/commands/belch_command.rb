@@ -1,5 +1,6 @@
 class BelchCommand < Command
   def execute
+
     case @actor.count_of(self.class.to_s) % 3
     when 0
       puts 'You force out a meager sound no louder than tapping your fingers.'
@@ -10,6 +11,9 @@ class BelchCommand < Command
     end
     @actor.increment self.class.to_s
     $player.debug_output "#{@actor.name} has belched #{@actor.count_of(self.class.to_s)} times."
+
+    post_execution
+    
   end
 end
 

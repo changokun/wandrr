@@ -73,6 +73,8 @@ class GoCommand < ReflexiveCommand
   def execute
     $player.debug_output "#{@verb.green}-ing to #{@destination.name}."
     @actor.change_location @destination
+
+    post_execution
   end
 
 end

@@ -17,6 +17,9 @@ class OpenCommand < NonReflexiveCommand
         puts 'Hmmm. You cannot figure out a way to ' + @verb.magenta + ' the ' + @direct_object.simple_label.yellow
       end
     end
+
+    post_execution
+    
   end
 
 

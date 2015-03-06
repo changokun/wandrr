@@ -16,6 +16,8 @@ class LookCommand < NonReflexiveCommand
 
   def execute
     Describe.call @direct_object, :in_detail, @actor
+
+    post_execution
   end
 
 end

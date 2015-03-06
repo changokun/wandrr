@@ -18,6 +18,11 @@ class Wandrr
     # Give the player a description of their outfit and their surroundings.
     Describe.call $player.location, :briefly
     Describe.call $player, :briefly
+
+    $player.location.contents.each do | item |
+      $player.add_observer(item) if item.is_a? Observable
+    end
+    
     
     while true do
       run

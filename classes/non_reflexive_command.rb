@@ -81,6 +81,9 @@ class NonReflexiveCommand < Command
         admit_defeat     
       end
     end
+
+    post_execution
+    
   end
 
   def admit_defeat

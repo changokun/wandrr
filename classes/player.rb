@@ -31,10 +31,6 @@ class Player < ArticulateAnimal
     return false
   end
 
-  def name
-    # todo have color reflect condition? move from white (well) to yellow to orange to red (near death)
-    @name.magenta
-  end
 
   def set_name name
     raise 'cannot change names.' unless @name == 'default'

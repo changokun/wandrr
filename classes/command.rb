@@ -11,4 +11,9 @@ class Command
     raise 'unwritten execution for this command'
   end
 
+  def post_execution
+    @actor.changed
+    @actor.notify_observers(@actor, self)
+  end
+
 end

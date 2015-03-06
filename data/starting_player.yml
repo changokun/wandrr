@@ -41,7 +41,7 @@ locations:
           excl: false
         : :briefly: Some boxes are stacked in a corner.
           :in_detail: Six mens shoe boxes are stacked in the corner.
-      id: 055624e35b6bfca8
+      id: 46b73c82f8ca5cad
       labels_player_might_use_to_refer_to_this:
       - box
       - boxes
@@ -62,7 +62,7 @@ locations:
             You will not enjoy this game. Go find something else to do.
     - &1 !ruby/object:Light
       description_data: {}
-      id: 85bac7703ecbf218
+      id: 1dab542b35880c5c
       shine_level_when_lit: 40
       shine_level: 0
     - !ruby/object:Switch
@@ -77,7 +77,7 @@ locations:
           end: 99
           excl: false
         : :any: A thin pull chain dangles from a light in the ceiling.
-      id: 81fc9bcfd3691fc6
+      id: 6656795e83ce3f89
       labels_player_might_use_to_refer_to_this:
       - pullchain
       - chain
