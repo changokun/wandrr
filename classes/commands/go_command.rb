@@ -9,7 +9,7 @@ class GoCommand < ReflexiveCommand
     @destination ||= nil
 
     # is one of the words an object that can be looked at/pushed around/killed, etc?
-    $player.debug_output 'Where would Player like to ' + @verb.red + '?'
+    $player.debug_output "Where would Player like to #{@verb}?"
 
     additional_input = Array.new(words)
     additional_input.shift # remove first word
@@ -21,7 +21,7 @@ class GoCommand < ReflexiveCommand
 
         word = additional_input.shift if additional_input.length > 0
 
-        word = Prompt.call 'Where would you like to ' + @verb.red + ' (to)?' if word.nil?
+        word = Prompt.call "Where would you like to #{@verb.red} (to)?" if word.nil?
 
         # does word refer to any doors in the room?
         # i guess that means loop thru everything in the room, one level deep.
@@ -31,10 +31,18 @@ class GoCommand < ReflexiveCommand
           if door.could_be_called? word
             if door.is_a? PlayerAwareness
               if door.is_known?
-                @destination = door.destination
+                if door.allows_passage?
+                  @destination = door.destination
+                else
+                  puts "You cannot go through #{door.simple_label}."
+                end
               end
             else
-              @destination = door.destination
+              if door.allows_passage?
+                @destination = door.destination
+              else
+                puts "You cannot go through that #{door.simple_label}."
+              end
             end
           end
         end
@@ -48,7 +56,7 @@ class GoCommand < ReflexiveCommand
         end
 
         if @destination.nil?
-          puts 'I’m not sure that you can ' + @verb.red + ' that way.'
+          puts "I’m not sure that you can #{@verb.red} that way."
         end
 
       end
@@ -63,20 +71,20 @@ class GoCommand < ReflexiveCommand
 
 
   def execute
-    puts @verb.green + '-ing to ' + @destination.name + '.'
+    $player.debug_output "#{@verb.green}-ing to #{@destination.name}."
     @actor.change_location @destination
   end
 
 end
 
 # aliases?
-class LeaveCommand < DieCommand 
+class LeaveCommand < GoCommand 
 end
-class WalkCommand < DieCommand 
+class WalkCommand < GoCommand 
 end
-class RunCommand < DieCommand 
+class RunCommand < GoCommand 
 end
-class FleeCommand < DieCommand 
+class FleeCommand < GoCommand 
 end
 
 

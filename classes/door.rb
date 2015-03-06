@@ -42,13 +42,18 @@ class Door
   def describe depth, actor = nil
     super
 
-    puts 'This ' + simple_label + ' is ' + @this_side_state.to_s + '.' if self.is_known?
+    puts "This #{simple_label} is #{@this_side_state.to_s}." if self.is_known?
   end
 
   def destination
     @other_side_location
   end
 
+  def allows_passage?
+    return @this_side_state != :shut
+    # and @other_side_state as well
+    # also check not locked or cursed or stuck or whatever.
+  end
 
 
 end
