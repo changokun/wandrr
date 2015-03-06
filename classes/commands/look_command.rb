@@ -2,9 +2,7 @@ require 'non_reflexive_command'
 
 class LookCommand < NonReflexiveCommand
 
-  def initialize words, actor = nil
-
-    actor ||= $player
+  def initialize words, actor = $player
     @actor = actor
 
     # we may resolve DO here and now.... if no additional words, DO is location
