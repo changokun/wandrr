@@ -6,4 +6,4 @@ class KillCommand < NonReflexiveCommand
   
 end
 
-FightCommand = Class.new(KillCommand)
+FightCommand = KillCommand

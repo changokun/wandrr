@@ -13,5 +13,5 @@ class ActivateCommand < NonReflexiveCommand
 end
 
 
-PushCommand = Class.new(ActivateCommand)
-PullCommand = Class.new(ActivateCommand)
+PushCommand = ActivateCommand
+PullCommand = ActivateCommand

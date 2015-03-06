@@ -10,12 +10,6 @@ class DieCommand < ReflexiveCommand
 end
 
 # aliases?
-class ExitCommand < DieCommand 
-end
-
-class QuitCommand < DieCommand 
-end
-
-class QCommand < DieCommand 
-end
-
+ExitCommand = DieCommand 
+QuitCommand = DieCommand 
+QCommand = DieCommand 

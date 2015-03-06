@@ -13,5 +13,5 @@ class BelchCommand < Command
   end
 end
 
-class BurpCommand < BelchCommand
-end
+BurpCommand = BelchCommand
+

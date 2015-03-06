@@ -4,5 +4,5 @@ class WaitCommand < Command
   end
 end
 
-class PassCommand < WaitCommand
-end
+PassCommand = WaitCommand
+

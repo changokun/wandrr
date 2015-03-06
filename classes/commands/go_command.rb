@@ -78,13 +78,9 @@ class GoCommand < ReflexiveCommand
 end
 
 # aliases?
-class LeaveCommand < GoCommand 
-end
-class WalkCommand < GoCommand 
-end
-class RunCommand < GoCommand 
-end
-class FleeCommand < GoCommand 
-end
+LeaveCommand = GoCommand 
+WalkCommand = GoCommand 
+RunCommand = GoCommand 
+FleeCommand = GoCommand 
 
 
