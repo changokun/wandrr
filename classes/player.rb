@@ -1,6 +1,7 @@
 require 'articulate_animal'
 require 'digest'
 
+
 class Player < ArticulateAnimal
 
   attr_accessor :debug_output_level, :file_safe_name, :game, :locations, :portals
@@ -28,18 +29,6 @@ class Player < ArticulateAnimal
       return true
     end
     return false
-  end
-
-  # moving to module
-  def increment countable_thing
-    raise TypeError unless countable_thing.is_a? String or countable_thing.is_a? Symbol
-    countable_thing = countable_thing.to_sym
-    if @counts.key? countable_thing
-      @counts[countable_thing] += 1
-    else
-      @counts[countable_thing] = 1
-    end
-
   end
 
   def name

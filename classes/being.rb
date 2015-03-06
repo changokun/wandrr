@@ -1,13 +1,14 @@
 require 'describable'
 require 'responds'
 require 'player_awareness'
+require 'keeps_count'
 
 class Being
 
   # capable of sensing and acting/reacting
   # kill attr_reader :location_id
 
-  include Describable, Responds, PlayerAwareness
+  include Describable, Responds, PlayerAwareness, KeepsCount
 
   def initialize(name=nil, location_id=nil)
     @name ||= name
