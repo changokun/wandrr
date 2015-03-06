@@ -2,7 +2,7 @@ class BelchCommand < Command
   def execute
     case @actor.count_of(self.class.to_s) % 3
     when 0
-      puts 'You force out a meager sound no lounder than tapping your fingers.'
+      puts 'You force out a meager sound no louder than tapping your fingers.'
     when 1
       puts 'Now there is a real belch. A belch any man would be proud to emit.'
     when 2

@@ -36,6 +36,8 @@ module Describable
   def could_be_called? label
     label_default
     # todo soften things like plurals and misspleeings.
+    label.downcase!
+    @labels_player_might_use_to_refer_to_this.map { | x | x.downcase! }
     @labels_player_might_use_to_refer_to_this.include? label
   end
 
@@ -85,6 +87,8 @@ module Describable
   private
 
   def get_description depth, actor = nil
+    return '' if @description_data.nil? # Hank was the first to have no description
+
     actor ||= $player
     #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 

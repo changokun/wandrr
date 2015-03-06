@@ -50,13 +50,13 @@ boxes.set_descriptions description_data
 boxes.add_response [:move, :push, :pull], 'There isn’t much room. You shift the boxes a few inches, but nothing happens.'
 boxes.add_response :any, 'Really? They are just some old shoeboxes. Nothing happens.'
 boxes.add_response :kill, Response.new(:game, :stop, 'Really? You want to kill the shoe box? You must be a maniac. You will not enjoy this game. Go find something else to do.')
-closet.contents.add boxes
+closet.contents << boxes
 
 # add switch and light. maybe as same object? no - i want switches to toggle multiple things.
 light = Light.new
 light.does_not_get_described
 light.is_lit! 40 # sets light level
-light.is_out! # but we want it out. # todo
+light.is_out! # ... but we want it out. # todo
 
 pullchain = Switch.new
 pullchain.might_be_called %w{pullchain chain pull_chain} # underscores not worked out yet
@@ -71,8 +71,11 @@ description_data = {
     }
   }
 pullchain.set_descriptions description_data
-closet.contents.add light
-closet.contents.add pullchain
+closet.contents << light
+closet.contents << pullchain
+
+hank = Ghost.new 'Hank'
+closet.contents << hank
 
 player.locations[closet.id] = closet
 # set starting point for new games:

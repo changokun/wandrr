@@ -2,16 +2,18 @@ require 'describable'
 require 'responds'
 require 'player_awareness'
 require 'keeps_count'
+require "observer"
 
 class Being
 
   # capable of sensing and acting/reacting
-  # kill attr_reader :location_id
+  attr_reader :id
 
-  include Describable, Responds, PlayerAwareness, KeepsCount
+  include Describable, Responds, PlayerAwareness, KeepsCount, Observable
 
   def initialize(name=nil, location_id=nil)
     @name ||= name
+    self.might_be_called @name
     @location_id ||= location_id
   end
 
@@ -20,7 +22,7 @@ class Being
     @location = destination
     @location_id = destination.id
 
-    puts name + ' moves to ' + destination.name + '.'
+    $player.debug_output "#{name} moves to #{destination.name}"
 
     # check if you can get from current location to location
     # make any checks, event hooks, etc.

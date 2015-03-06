@@ -3,9 +3,6 @@ class CommandFactory
   def self.parse_input_string str
     $player.debug_output 'Trying to figure out what you want when you say, "' + str + '."', 2
 
-    str.gsub! /[^a-z0-9 ]+/, ' '
-    str.strip!
-
     return nil unless str.length > 0
 
     words = str.split(' ')

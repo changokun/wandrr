@@ -13,7 +13,7 @@ class Wandrr
     # give the player a reference to the game
     $player.game = self
 
-    puts "\nOkay, here we go. Type " + 'help'.black.on_white + " to see the basic commands.\n\n"
+    puts "\nOkay, here we go. Type #{'help'.magenta} to see the basic commands.\n\n"
 
     # Give the player a description of their outfit and their surroundings.
     Describe.call $player.location, :briefly
@@ -26,7 +26,8 @@ class Wandrr
 
   def stop
     $player.debug_output 'ending the game'
-    abort "\n\nThanks for playing.\n\n"
+    puts "\nThanks for playing.\n\n".green
+    exit # exits with a 0
   end
 
   def run
@@ -44,7 +45,7 @@ class Wandrr
     command = nil
     begin
       until command do
-        raw_command = Prompt.call 'What would you like to do?', false
+        raw_command = Prompt.call "\nWhat would you like to do?", false
         command = CommandFactory::parse_input_string raw_command
         if command.nil?
           puts 'I do not understand.'.green

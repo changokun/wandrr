@@ -1,12 +1,14 @@
 --- !ruby/object:Player
 name: default
-location_id: 2015-03-05_ab46be2cf3297e4d
+labels_player_might_use_to_refer_to_this:
+- player
+location_id: 2015-03-06_ab46be2cf3297e4d
 outfit: 
 debug_output_level: 0
 file_safe_name: 
 game: 
 locations:
-  2015-03-05_ab46be2cf3297e4d: &4 !ruby/object:Location
+  2015-03-06_ab46be2cf3297e4d: &4 !ruby/object:Location
     sys_name: 
     map_name: A closet
     short_name: A closet
@@ -27,64 +29,69 @@ locations:
       : :briefly: You are in a clothes closet. There many clothing items hanging.
         :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
           on a rod. It is maybe four feet deep and three feet across.
-    id: 2015-03-05_ab46be2cf3297e4d
+    id: 2015-03-06_ab46be2cf3297e4d
     locations: []
     shine_level: 0
-    contents: !ruby/object:Contents_
-      contents:
-        e37939210a634909: !ruby/object:Item
-          description_data:
-            ? !ruby/range
-              begin: 20
-              end: 99
-              excl: false
-            : :briefly: Some boxes are stacked in a corner.
-              :in_detail: Six mens shoe boxes are stacked in the corner.
-          id: e37939210a634909
-          labels_player_might_use_to_refer_to_this:
-          - box
-          - boxes
-          - shoeboxes
-          - item
-          responses:
-            :move: There isn’t much room. You shift the boxes a few inches, but nothing
-              happens.
-            :push: There isn’t much room. You shift the boxes a few inches, but nothing
-              happens.
-            :pull: There isn’t much room. You shift the boxes a few inches, but nothing
-              happens.
-            :any: Really? They are just some old shoeboxes. Nothing happens.
-            :kill: !ruby/object:Response
-              responder: :game
-              method: :stop
-              narrative: Really? You want to kill the shoe box? You must be a maniac.
-                You will not enjoy this game. Go find something else to do.
-        71d9e56e02f76708: &1 !ruby/object:Light
-          description_data: {}
-          id: 71d9e56e02f76708
-          shine_level_when_lit: 40
-          shine_level: 0
-        7e4955f6011d04d1: !ruby/object:Switch
-          description_data:
-            ? !ruby/range
-              begin: 0
-              end: 19
-              excl: false
-            : :any: A thin chain dangles from above.
-            ? !ruby/range
-              begin: 20
-              end: 99
-              excl: false
-            : :any: A thin pull chain dangles from a light in the ceiling.
-          id: 7e4955f6011d04d1
-          labels_player_might_use_to_refer_to_this:
-          - pullchain
-          - chain
-          - pull_chain
-          - switch
-          togglees:
-          - *1
-  2015-03-05_c6d4bff85e1ccd23: &3 !ruby/object:Location
+    contents:
+    - !ruby/object:Item
+      description_data:
+        ? !ruby/range
+          begin: 20
+          end: 99
+          excl: false
+        : :briefly: Some boxes are stacked in a corner.
+          :in_detail: Six mens shoe boxes are stacked in the corner.
+      id: 055624e35b6bfca8
+      labels_player_might_use_to_refer_to_this:
+      - box
+      - boxes
+      - shoeboxes
+      - item
+      responses:
+        :move: There isn’t much room. You shift the boxes a few inches, but nothing
+          happens.
+        :push: There isn’t much room. You shift the boxes a few inches, but nothing
+          happens.
+        :pull: There isn’t much room. You shift the boxes a few inches, but nothing
+          happens.
+        :any: Really? They are just some old shoeboxes. Nothing happens.
+        :kill: !ruby/object:Response
+          responder: :game
+          method: :stop
+          narrative: Really? You want to kill the shoe box? You must be a maniac.
+            You will not enjoy this game. Go find something else to do.
+    - &1 !ruby/object:Light
+      description_data: {}
+      id: 85bac7703ecbf218
+      shine_level_when_lit: 40
+      shine_level: 0
+    - !ruby/object:Switch
+      description_data:
+        ? !ruby/range
+          begin: 0
+          end: 19
+          excl: false
+        : :any: A thin chain dangles from above.
+        ? !ruby/range
+          begin: 20
+          end: 99
+          excl: false
+        : :any: A thin pull chain dangles from a light in the ceiling.
+      id: 81fc9bcfd3691fc6
+      labels_player_might_use_to_refer_to_this:
+      - pullchain
+      - chain
+      - pull_chain
+      - switch
+      togglees:
+      - *1
+    - !ruby/object:Ghost
+      name: Hank
+      labels_player_might_use_to_refer_to_this:
+      - Hank
+      - ghost
+      location_id: 
+  2015-03-06_c6d4bff85e1ccd23: &3 !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -98,13 +105,13 @@ locations:
         :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
           the wall, is neatly made with an orange blanket on top and two pillows.
           The walls are also orange.
-    id: 2015-03-05_c6d4bff85e1ccd23
+    id: 2015-03-06_c6d4bff85e1ccd23
     locations: []
     shine_level: 60
 portals:
-  8a4ec6a2f08c85484f66647db91b9699: &2 !ruby/object:Portal
-    location_a_id: 2015-03-05_ab46be2cf3297e4d
-    location_b_id: 2015-03-05_c6d4bff85e1ccd23
+  3ed329eedf9c1cdd2004128123b8d91d: &2 !ruby/object:Portal
+    location_a_id: 2015-03-06_ab46be2cf3297e4d
+    location_b_id: 2015-03-06_c6d4bff85e1ccd23
     door_a: !ruby/object:Door
       this_side_state: :shut
       light_transmission_factor:
@@ -127,8 +134,8 @@ portals:
       - bedroom_door
       - bedroom
       - door
-      other_side_location_id: 2015-03-05_c6d4bff85e1ccd23
-      this_side_location_id: 2015-03-05_ab46be2cf3297e4d
+      other_side_location_id: 2015-03-06_c6d4bff85e1ccd23
+      this_side_location_id: 2015-03-06_ab46be2cf3297e4d
       other_side_location: *3
       this_side_location: *4
     door_b: !ruby/object:Door
@@ -153,11 +160,11 @@ portals:
       - closet_door
       - closet
       - door
-      other_side_location_id: 2015-03-05_ab46be2cf3297e4d
-      this_side_location_id: 2015-03-05_c6d4bff85e1ccd23
+      other_side_location_id: 2015-03-06_ab46be2cf3297e4d
+      this_side_location_id: 2015-03-06_c6d4bff85e1ccd23
       other_side_location: *4
       this_side_location: *3
-    id: 8a4ec6a2f08c85484f66647db91b9699
+    id: 3ed329eedf9c1cdd2004128123b8d91d
 description_data:
   ? !ruby/range
     begin: 0
