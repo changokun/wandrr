@@ -5,7 +5,7 @@ require 'non_reflexive_command'
 
 class ActivateCommand < NonReflexiveCommand
 
-  def initialize words, actor = nil
+  def initialize words, actor = $player
     super
     @verb = 'activate'
   end
