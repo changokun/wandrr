@@ -1,5 +1,4 @@
 module Responds
-
   # this is handling responses as a direct object. we may need another for reflexive verbs.
   def respond verb, actor, words
     @responses ||= {}
@@ -12,14 +11,13 @@ module Responds
     else
       puts "Nothing happens." + " #{self.simple_label} probably needs some responses.".black
     end
-
   end
 
   def add_response verbs, actions
     @responses ||= {}
     verbs = verbs.to_sym if verbs.is_a? String
     verbs = [verbs] if verbs.is_a? Symbol
-    verbs.each do | verb |
+    verbs.each do |verb|
       @responses[verb] = actions
     end
   end
@@ -28,9 +26,6 @@ module Responds
     @responses ||= {}
     @responses.merge! data
   end
-
-
-
 
   private
 
@@ -58,5 +53,4 @@ module Responds
       puts 'waht should i do with that response?'.green
     end
   end
-
 end
