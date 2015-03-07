@@ -1,9 +1,8 @@
 class Command
 
-  def initialize words, actor = nil
+  def initialize words, actor = $player
     @words = words
     @actor = actor
-    @actor ||= $player
     @verb = self.class.to_s.downcase.gsub 'command', ''
   end
 
