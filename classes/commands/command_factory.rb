@@ -1,7 +1,7 @@
 class CommandFactory
 
   def self.parse_input_string str
-    $player.debug_output 'Trying to figure out what you want when you say, "' + str + '."', 2
+    $player.debug_output %Q(Trying to figure out what you want when you say, "#{str}."), 2
 
     return nil unless str.length > 0
 
