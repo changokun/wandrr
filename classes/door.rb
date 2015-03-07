@@ -16,11 +16,11 @@ class Door
     @this_side_state = :shut # :open :ajar :cracked
     # @other_side_state ha ha who cares?
     @light_transmission_factor = {
-      :open => 0.6,
-      :ajar => 0.3,
-      :cracked => 0.1,
-      :closed => 0.05,
-      :what => 'what do you mean this is too detailed? i did not even add teh sound transmission factors, yet!'
+      open: 0.6,
+      ajar: 0.3,
+      cracked: 0.1,
+      closed: 0.05,
+      what: 'what do you mean this is too detailed? i did not even add teh sound transmission factors, yet!'
     }
     @portal = nil
   end
