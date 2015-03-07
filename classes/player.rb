@@ -25,7 +25,7 @@ class Player < ArticulateAnimal
     str << ' | ' + `ps -o rss -p #{$$}`.strip.split.last.gsub(/(\d)(?=(\d\d\d)+(?!\d))/, "\\1,") + ' Kb'
 
     if @debug_output_level >= level
-      puts '['.black + str.black + ']'.black
+      puts "[#{str}]".black
       return true
     end
     return false
