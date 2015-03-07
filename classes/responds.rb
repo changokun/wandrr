@@ -15,9 +15,7 @@ module Responds
 
   def add_response verbs, actions
     @responses ||= {}
-    verbs = verbs.to_sym if verbs.is_a? String
-    verbs = [verbs] if verbs.is_a? Symbol
-    verbs.each do |verb|
+    Array(verbs).map(&:to_sym).each do |verb|
       @responses[verb] = actions
     end
   end
