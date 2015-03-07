@@ -6,7 +6,7 @@ class CommandFactory
     return nil unless str.length > 0
 
     words = str.split(' ')
-    words.map { | word | word.strip! }
+    words.map(&:strip!)
 
     first_word = words[0]
 
