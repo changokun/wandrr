@@ -3,15 +3,14 @@ module Responds
   # this is handling responses as a direct object. we may need another for reflexive verbs.
   def respond verb, actor, words
     @responses ||= {}
-    puts 'responding: ' + actor.name + ' is ' + (verb + '-ing').red + ' ' + self.simple_label
-
+    puts "responding: #{actor.name} is #{(verb + '-ing').red} #{self.simple_label}"
 
     if @responses.key? verb.to_sym
       process_response @responses[verb.to_sym], verb, actor, words
     elsif @responses.key? :any
       process_response @responses[:any], 'any', actor, words
     else
-      puts 'Nothing happens. ' + (self.simple_label + ' probably needs some responses.').black
+      puts "Nothing happens." + " #{self.simple_label} probably needs some responses.".black
     end
 
   end
@@ -47,7 +46,7 @@ module Responds
         if responder.respond_to? response.method
           responder.send response.method.to_sym
         else
-          puts response.method.to_s + ' not available on game.'
+          puts "#{response.method.to_s} not available on game."
           p responder
         end
       else
