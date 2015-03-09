@@ -77,6 +77,9 @@ closet.contents << pullchain
 hank = Ghost.new 'Hank'
 closet.contents << hank
 
+mokujin = TrainingDummy.new('Mokujin')
+closet.contents << mokujin
+
 player.locations[closet.id] = closet
 # set starting point for new games:
 player.set_location_id closet.id
