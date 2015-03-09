@@ -11,10 +11,11 @@ class Being
 
   include Describable, Responds, PlayerAwareness, KeepsCount, Observable
 
-  def initialize(name=nil, location_id=nil)
+  def initialize(name=nil, location_id=nil, description=nil)
     @name ||= name
     self.might_be_called @name
     @location_id ||= location_id
+    self.add_description description unless description.nil?
   end
 
   def change_location destination
