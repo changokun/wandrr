@@ -1,0 +1,16 @@
+---
+:outfit: !ruby/object:Container
+  contents: []
+:descriptions:
+  ? !ruby/range
+    begin: 0
+    end: 19
+    excl: false
+  : :any: It is too dark to see your hand in front of your face.
+  ? !ruby/range
+    begin: 20
+    end: 99
+    excl: false
+  : :briefly: You seem to be wearing Batman pajamas.
+    :in_detail: You seem to be wearing comfy-looking pajamas, or some other softish full-body outfit decorated with a stylized bat.
+      It covers your arms and legs.
