@@ -37,30 +37,27 @@ module Describable
     label_default
     # todo soften things like plurals and misspleeings.
     label.downcase!
-    @labels_player_might_use_to_refer_to_this.map { | x | x.downcase! }
+    @labels_player_might_use_to_refer_to_this.map(&:downcase!)
     @labels_player_might_use_to_refer_to_this.include? label
   end
 
   def simple_label
     label_default
-    return @labels_player_might_use_to_refer_to_this[0]
+    return @labels_player_might_use_to_refer_to_this.first
   end
 
-  def describe depth, actor = nil
-    actor ||= $player
+  def describe depth, actor = $player
     description = get_description depth, actor
     if description.length > 0
-      $player.debug_output 'Describe ' + self.simple_label + ' ' + depth.to_s + ' to ' + actor.class.to_s + ' (illumination: ' + actor.location.get_illumination_level.to_s + ').'
+      $player.debug_output "Describe #{self.simple_label} #{depth.to_s} to #{actor.class.to_s} (illumination: #{actor.location.get_illumination_level.to_s})."
 
       puts description
       if self.is_a? PlayerAwareness
         self.is_known!
       end
     else
-      $player.debug_output 'No description provided for ' + self.simple_label + ' at illumination level ' + actor.location.get_illumination_level.to_s + ', so it remains invisible.'
-
+      $player.debug_output "No description provided for #{self.simple_label} at illumination level #{actor.location.get_illumination_level.to_s}, so it remains invisible."
     end
-
   end
 
   def set_descriptions descriptions
@@ -77,22 +74,20 @@ module Describable
     @description_data[illumination_level] = {} unless @description_data.key? illumination_level
     
     if @description_data[illumination_level].key? depth
-      @description_data[illumination_level][depth] += ' FURTHERMORE ' + description
+      @description_data[illumination_level][depth] += " FURTHERMORE #{description}"
     else
       @description_data[illumination_level][depth] = description
     end
-
   end
 
   private
 
-  def get_description depth, actor = nil
+  def get_description depth, actor = $player
     return '' if @description_data.nil? # Hank was the first to have no description
 
-    actor ||= $player
     #for now, assumin actor is player, but that will need to be expanded later. so that other characters can look at things/other beings and see if they are well-armed, or wearing the magic amulet, or on the same/wrong team or very valuable or whatever.
 
-    @description_data.each do | illumination_level, descriptions |
+    @description_data.each do |illumination_level, descriptions|
       if illumination_level.include? actor.location.get_illumination_level
         return descriptions[:all] if descriptions.key? :all
         if descriptions.key? depth
@@ -104,8 +99,5 @@ module Describable
     end
 
     ''
-
   end
-
-
 end
