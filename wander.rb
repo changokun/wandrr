@@ -1,4 +1,5 @@
 require_relative 'tools/init'
+require 'pry'
 
 puts "\n\n=====\nHello."
 
