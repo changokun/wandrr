@@ -130,7 +130,8 @@ portal = Portal.new closet, door_a, bedroom, door_b
 
 player.portals[portal.id] = portal
 
-
+charles = Being.new 'Charles'
+bedroom.contents << charles
 
 
 

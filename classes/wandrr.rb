@@ -25,7 +25,14 @@ class Wandrr
     
     
     while true do
-      run
+      begin
+        run
+      rescue StandardError => e
+        puts "\nOH NOES -----".green
+        puts e.class.to_s.magenta + ' ' + e.message.red
+        puts e.backtrace.first.red
+        puts "TRY AGAIN -----".green
+      end
     end
   end
 

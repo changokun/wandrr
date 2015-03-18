@@ -3,7 +3,7 @@ require 'reflexive_command'
 class GoCommand < ReflexiveCommand
 
 
-  def initialize words, actor = nil
+  def initialize words, actor = $player
     super
 
     @destination ||= nil

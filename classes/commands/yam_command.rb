@@ -1,10 +1,10 @@
 require 'non_reflexive_command'
 
-class YamCommand < NonReflexiveCommand
+class YamCommand < SystemCommand
 
 
   # this is a copy. dont do any serious work here.
-  def initialize words, actor = nil
+  def initialize words, actor = $player
     @words = words
     @actor = actor
     @actor ||= $player
