@@ -28,6 +28,8 @@ class Light < Item
     else
       @shine_level = @shine_level_when_lit
       puts 'the light comes to life.'
+      looky = LookCommand.new ['look']
+      looky.execute
     end
   end
 

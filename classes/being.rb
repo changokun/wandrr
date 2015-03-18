@@ -29,10 +29,20 @@ class Being
     # make any checks, event hooks, etc.
     # not sure how we track this..... is it a ref already? how do I keep it that way?
     
-
+    # trigger a DepartCommand? (for the observers who might care.)
+    # detach observers from previous location
 
 
     # trigger events in old location
+
+    # if the player has never been here before (count) trigger detailed look
+    # if the player has been here, a brief look
+    looky = LookCommand.new ['look']
+    looky.execute
+    # some of this should happen before new observers can be attached.
+
+    # attach observers, trigger an ArriveCommand?
+
     # trigger events in new location (visit count)
   end
 
@@ -57,7 +67,7 @@ class Being
   end
 
   def update actor, command
-    puts "#{self.name} observes #{actor.name}’s #{command.class.to_s}"
+    $player.debug_output "#{self.name} observes #{actor.name}’s #{command.class.to_s}"
   end
   
 end
