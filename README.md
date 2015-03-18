@@ -13,6 +13,7 @@ Recent innovations - try these commands
 * go closet
 * kill boxes (maniacs only)
 * yam chain
+* if you attack the door (from the bedroom?) Charles should insult you.
 
 Items have a short list of labels that the player can use in their commands. The default label is the class name, but others can be added. eg the switch in the closet is better known as a pullchain, but will also respond to 'chain'
 
