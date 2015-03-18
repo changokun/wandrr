@@ -130,7 +130,16 @@ portal = Portal.new closet, door_a, bedroom, door_b
 
 player.portals[portal.id] = portal
 
+
+
 charles = Being.new 'Charles'
+description_data = {
+    0..99 => {
+      :briefly => 'Charles is here.',
+      :in_detail => 'Charles is standing around, doing very little.'
+    }
+  }
+charles.set_descriptions description_data
 bedroom.contents << charles
 
 

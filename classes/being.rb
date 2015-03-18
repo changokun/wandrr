@@ -20,10 +20,8 @@ class Being
 
   def change_location destination
 
-    @location = destination
-    @location_id = destination.id
+    $player.debug_output "#{name} starts to move to #{destination.name}"
 
-    $player.debug_output "#{name} moves to #{destination.name}"
 
     # check if you can get from current location to location
     # make any checks, event hooks, etc.
@@ -31,17 +29,28 @@ class Being
     
     # trigger a DepartCommand? (for the observers who might care.)
     # detach observers from previous location
+    @location.contents.each do | item |
+      $player.delete_observer(item) if item.is_a? Observable
+    end
 
 
     # trigger events in old location
+    $player.debug_output "#{name} moves to #{destination.name}"
+    @location = destination
+    @location_id = destination.id
+
 
     # if the player has never been here before (count) trigger detailed look
     # if the player has been here, a brief look
-    looky = LookCommand.new ['look']
-    looky.execute
+    LookCommand.new(['look']).execute
     # some of this should happen before new observers can be attached.
 
     # attach observers, trigger an ArriveCommand?
+    @location.contents.each do | item |
+      $player.add_observer(item) if item.is_a? Observable
+    end
+
+    $player.debug_output "#{name} moved to #{destination.name}"
 
     # trigger events in new location (visit count)
   end
