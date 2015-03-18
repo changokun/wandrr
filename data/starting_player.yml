@@ -2,13 +2,13 @@
 name: default
 labels_player_might_use_to_refer_to_this:
 - player
-location_id: 2015-03-17_ab46be2cf3297e4d
+location_id: 2015-03-18_ab46be2cf3297e4d
 outfit: 
 debug_output_level: 0
 file_safe_name: 
 game: 
 locations:
-  2015-03-17_ab46be2cf3297e4d: &4 !ruby/object:Location
+  2015-03-18_ab46be2cf3297e4d: &4 !ruby/object:Location
     sys_name: 
     map_name: A closet
     short_name: A closet
@@ -29,7 +29,7 @@ locations:
       : :briefly: You are in a clothes closet. There many clothing items hanging.
         :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
           on a rod. It is maybe four feet deep and three feet across.
-    id: 2015-03-17_ab46be2cf3297e4d
+    id: 2015-03-18_ab46be2cf3297e4d
     locations: []
     shine_level: 0
     contents:
@@ -41,7 +41,7 @@ locations:
           excl: false
         : :briefly: Some boxes are stacked in a corner.
           :in_detail: Six mens shoe boxes are stacked in the corner.
-      id: 71a3cb32f1fb689a
+      id: e7da1a5058d69d8f
       labels_player_might_use_to_refer_to_this:
       - box
       - boxes
@@ -62,7 +62,7 @@ locations:
             You will not enjoy this game. Go find something else to do.
     - &1 !ruby/object:Light
       description_data: {}
-      id: dbec9750885bec92
+      id: 0fd761451b9f050d
       shine_level_when_lit: 40
       shine_level: 0
     - !ruby/object:Switch
@@ -77,7 +77,7 @@ locations:
           end: 99
           excl: false
         : :any: A thin pull chain dangles from a light in the ceiling.
-      id: 680c573a32606472
+      id: df828b73d4bd32ec
       labels_player_might_use_to_refer_to_this:
       - pullchain
       - chain
@@ -103,7 +103,7 @@ locations:
           end: 99
           excl: false
         : :any: A battered, wooden training dummy.
-  2015-03-17_c6d4bff85e1ccd23: &3 !ruby/object:Location
+  2015-03-18_c6d4bff85e1ccd23: &3 !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -117,7 +117,7 @@ locations:
         :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
           the wall, is neatly made with an orange blanket on top and two pillows.
           The walls are also orange.
-    id: 2015-03-17_c6d4bff85e1ccd23
+    id: 2015-03-18_c6d4bff85e1ccd23
     locations: []
     shine_level: 60
     contents:
@@ -134,10 +134,15 @@ locations:
           excl: false
         : :briefly: Charles is here.
           :in_detail: Charles is standing around, doing very little.
+      responses:
+        :move: Charles says, “Leave me alone.”
+        :activate: Charles says, “Leave me alone.”
+        :any: Charles remains unmoved.
+        :look: Charles shouts, “Don’t look at me!”
 portals:
-  f29eca3616df87f24980fdc29e1e06bd: &2 !ruby/object:Portal
-    location_a_id: 2015-03-17_ab46be2cf3297e4d
-    location_b_id: 2015-03-17_c6d4bff85e1ccd23
+  d59fc2bb24b72f3bc4d7d802890803b7: &2 !ruby/object:Portal
+    location_a_id: 2015-03-18_ab46be2cf3297e4d
+    location_b_id: 2015-03-18_c6d4bff85e1ccd23
     door_a: !ruby/object:Door
       this_side_state: :shut
       light_transmission_factor:
@@ -160,8 +165,8 @@ portals:
       - bedroom_door
       - bedroom
       - door
-      other_side_location_id: 2015-03-17_c6d4bff85e1ccd23
-      this_side_location_id: 2015-03-17_ab46be2cf3297e4d
+      other_side_location_id: 2015-03-18_c6d4bff85e1ccd23
+      this_side_location_id: 2015-03-18_ab46be2cf3297e4d
       other_side_location: *3
       this_side_location: *4
     door_b: !ruby/object:Door
@@ -186,11 +191,11 @@ portals:
       - closet_door
       - closet
       - door
-      other_side_location_id: 2015-03-17_ab46be2cf3297e4d
-      this_side_location_id: 2015-03-17_c6d4bff85e1ccd23
+      other_side_location_id: 2015-03-18_ab46be2cf3297e4d
+      this_side_location_id: 2015-03-18_c6d4bff85e1ccd23
       other_side_location: *4
       this_side_location: *3
-    id: f29eca3616df87f24980fdc29e1e06bd
+    id: d59fc2bb24b72f3bc4d7d802890803b7
 description_data:
   ? !ruby/range
     begin: 0

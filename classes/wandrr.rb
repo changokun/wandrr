@@ -86,7 +86,7 @@ class Wandrr
   end
 
   def allow_other_beings_to_act
-    puts 'Other things are happening. Birds chirp. Insects buzz. The wind blows.'
+    # puts 'Other things are happening. Birds chirp. Insects buzz. The wind blows.'
   end
 
 

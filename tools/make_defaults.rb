@@ -140,6 +140,10 @@ description_data = {
     }
   }
 charles.set_descriptions description_data
+charles.add_response [:move, :activate], "Charles says, “Leave me alone.”"
+charles.add_response :any, "Charles remains unmoved."
+charles.add_response :look, "Charles shouts, “Don’t look at me!”"
+
 bedroom.contents << charles
 
 

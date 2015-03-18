@@ -2,7 +2,7 @@ module Responds
   # this is handling responses as a direct object. we may need another for reflexive verbs.
   def respond verb, actor, words
     @responses ||= {}
-    puts "responding: #{actor.name} is #{(verb + '-ing').red} #{self.simple_label}"
+    puts "responding: #{self.simple_label} is being #{(verb + '-ed').red} by #{actor.name}"
 
     if @responses.key? verb.to_sym
       process_response @responses[verb.to_sym], verb, actor, words
