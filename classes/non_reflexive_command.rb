@@ -1,6 +1,9 @@
 require 'command'
 
 class NonReflexiveCommand < Command
+
+  attr_accessor :direct_object
+  
   def initialize words = nil, actor = $player
     super
 

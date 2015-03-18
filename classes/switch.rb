@@ -1,4 +1,5 @@
 require 'player_awareness'
+require 'item'
 
 class Switch < Item
 

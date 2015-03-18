@@ -29,7 +29,7 @@ class Being
     
     # trigger a DepartCommand? (for the observers who might care.)
     # detach observers from previous location
-    @location.contents.each do | item |
+    location.contents.each do | item |
       $player.delete_observer(item) if item.is_a? Observable
     end
 
@@ -76,7 +76,14 @@ class Being
   end
 
   def update actor, command
-    $player.debug_output "#{self.name} observes #{actor.name}’s #{command.class.to_s}"
+    if command.is_a? NonReflexiveCommand
+      $player.debug_output "#{self.name} observes #{actor.name} #{command.verb} the #{command.direct_object.simple_label}"
+      if actor == $player && command.verb == 'attack' and command.direct_object.could_be_called? 'door'
+        puts "#{self.name} says, “You are an idiot.”"
+      end
+    else
+      $player.debug_output "#{self.name} observes #{actor.name} #{command.verb}-ing"
+    end
   end
   
 end

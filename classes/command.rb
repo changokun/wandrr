@@ -1,5 +1,7 @@
 class Command
 
+  attr_accessor :verb
+
   def initialize words = nil, actor = $player
     @words = words || []
     @actor = actor
