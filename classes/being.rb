@@ -70,7 +70,8 @@ class Being
     self.location
   end
 
-  def name
+  def name(decorated='decorated')
+    return @name if decorated == 'undecorated'
     # todo have color reflect condition? move from white (well) to yellow to orange to red (near death)
     @name.magenta
   end
