@@ -14,6 +14,7 @@ Recent innovations - try these commands
 * kill boxes (maniacs only)
 * yam chain
 * if you attack the door (from the bedroom?) Charles should insult you.
+* save - then next time you start the game, if you give it the same name, it should load your save file.
 
 Items have a short list of labels that the player can use in their commands. The default label is the class name, but others can be added. eg the switch in the closet is better known as a pullchain, but will also respond to 'chain'
 
@@ -21,12 +22,14 @@ The addition of the observer module has helped a lot. Things that are currently 
 
 Tasks:
 * In some cases, going through a door should automatically open it. but in some special cases, this should not happen.
-* Counters - minimally implemented. Try belching a few times. Let's count how many times Player has been to a location. How many times each command (base class) has been given.
-* Implement Save. remove some meaningless stuff from objects as noted in some parts of the code. then do the double save - Marshal and Yaml. (Yaml so we can read it.) This is important because we need to make sure we aren't creating things that cannot be saved (like Procs/lambdas), and if we do, find another strategy.
+* Remove the use of ids to track things - it is a hold over from when I didn't know ruby at all. Now I know a little ruby, and it is (sorta) a by-reference thing, so we will just store the objects in the bag. that's it. not a list of object ids in the bag that we go look up.
+* My keyboard is too noisy.
+* (partially implemented) Counters - Try belching a few times. Let's count how many times Player has been to a location. How many times each command (base class) has been given.
+* (partially implemented) Finalize Save. Some parts of the code put meaningless things on the player, I think. they are marked in the code with comments, I think.
 * Modify exit commands to check for and offer a save.
 * Hints? I don't want explicit hints, but well narrated ones will work.
 * Easier object creation. It is currently done by the 'make_defaults.rb' - if this game is to be easy to make content for, we need to replace this reliance on script. 
-* Ghosts and other ethereal objects that can only be perceived by those with a gift. I want a ghost in the closet who cannot be seen nor heard in anyway. unless you go get the magic amulet that allows you to see them. Hank has been added. The only way to see him at this point is to yam hank. hee hee
+* (partially implemented) Ghosts and other ethereal objects that can only be perceived by those with a gift. I want a ghost in the closet who cannot be seen nor heard in anyway. unless you go get the magic amulet that allows you to see them. Hank has been added. The only way to see him at this point is to yam hank. hee hee
 * containers with things in them.
 * outfits for beings.
 * carry things.
