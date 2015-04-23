@@ -80,9 +80,8 @@ closet.contents << hank
 mokujin = TrainingDummy.new('Mokujin')
 closet.contents << mokujin
 
-player.locations[closet.id] = closet
 # set starting point for new games:
-player.set_location_id closet.id
+player.location = closet
 
 
 
@@ -128,7 +127,7 @@ door_b.might_be_called %w{closet_door closet}
 
 portal = Portal.new closet, door_a, bedroom, door_b
 
-player.portals[portal.id] = portal
+# player.portals[portal.id] = portal
 
 
 

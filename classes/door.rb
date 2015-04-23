@@ -6,11 +6,9 @@ class Door
 
   include Describable, Shines, PlayerAwareness
 
-  attr_writer :portal, :other_side_location_id, :this_side_location_id, :other_side_location, :this_side_location
+  attr_writer :portal, :other_side_location, :this_side_location
 
   def initialize
-    @this_side_location_id
-    @other_side_location_id
     @this_side_location
     @other_side_location
     @this_side_state = :shut # :open :ajar :cracked

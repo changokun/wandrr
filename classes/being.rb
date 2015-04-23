@@ -7,14 +7,14 @@ require "observer"
 class Being
 
   # capable of sensing and acting/reacting
-  attr_reader :id
+  attr_reader :id, :location
 
   include Describable, Responds, PlayerAwareness, KeepsCount, Observable
 
-  def initialize(name=nil, location_id=nil, description=nil)
+  def initialize(name=nil, location=nil, description=nil)
     @name ||= name
     self.might_be_called @name
-    @location_id ||= location_id
+    @location ||= location
     self.add_description description unless description.nil?
   end
 
@@ -37,7 +37,6 @@ class Being
     # trigger events in old location
     $player.debug_output "#{name} moves to #{destination.name}"
     @location = destination
-    @location_id = destination.id
 
 
     # if the player has never been here before (count) trigger detailed look
@@ -55,15 +54,10 @@ class Being
     # trigger events in new location (visit count)
   end
 
-  def location
-    #todo add error handling
-    $locations[@location_id]
-  end
-
-  def set_location_id id
+  def location= location
     # can only set id if it is not already set, other wise go through the normal moving channels.
-    raise 'cannot set location id for something that already is somewhere. jeez.' unless @location_id.nil?
-    @location_id = id
+    raise 'cannot set location id for something that already is somewhere. jeez.' unless @location.nil?
+    @location = location
   end
 
   def container

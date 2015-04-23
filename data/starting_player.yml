@@ -2,108 +2,108 @@
 name: default
 labels_player_might_use_to_refer_to_this:
 - player
-location_id: 2015-04-23_ab46be2cf3297e4d
-outfit: 
-debug_output_level: 0
-file_safe_name: 
-game: 
-locations:
-  2015-04-23_ab46be2cf3297e4d: &4 !ruby/object:Location
-    sys_name: 
-    map_name: A closet
-    short_name: A closet
-    long_name: Your closet
+location: &2 !ruby/object:Location
+  sys_name: 
+  map_name: A closet
+  short_name: A closet
+  long_name: Your closet
+  description_data:
+    ? !ruby/range
+      begin: 0
+      end: 19
+      excl: false
+    : :briefly: It feels like you are in a closet. You are competing for space with
+        some hanging clothes.
+      :in_detail: It feels like you are in a closet. You are among dozens of hanging
+        clothing items. It is maybe four feet deep and three feet across.
+    ? !ruby/range
+      begin: 20
+      end: 99
+      excl: false
+    : :briefly: You are in a clothes closet. There many clothing items hanging.
+      :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
+        on a rod. It is maybe four feet deep and three feet across.
+  id: 2015-04-23_ab46be2cf3297e4d
+  locations: []
+  shine_level: 0
+  contents:
+  - !ruby/object:Item
+    description_data:
+      ? !ruby/range
+        begin: 20
+        end: 99
+        excl: false
+      : :briefly: Some boxes are stacked in a corner.
+        :in_detail: Six mens shoe boxes are stacked in the corner.
+    id: ddfdda6d70f32723
+    labels_player_might_use_to_refer_to_this:
+    - box
+    - boxes
+    - shoeboxes
+    - item
+    responses:
+      :move: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :push: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :pull: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :any: Really? They are just some old shoeboxes. Nothing happens.
+      :kill: !ruby/object:Response
+        responder: :game
+        method: :stop
+        narrative: Really? You want to kill the shoe box? You must be a maniac. You
+          will not enjoy this game. Go find something else to do.
+  - &1 !ruby/object:Light
+    description_data: {}
+    id: 81d3969c74d7252b
+    shine_level_when_lit: 40
+    shine_level: 0
+  - !ruby/object:Switch
     description_data:
       ? !ruby/range
         begin: 0
         end: 19
         excl: false
-      : :briefly: It feels like you are in a closet. You are competing for space with
-          some hanging clothes.
-        :in_detail: It feels like you are in a closet. You are among dozens of hanging
-          clothing items. It is maybe four feet deep and three feet across.
+      : :any: A thin chain dangles from above.
       ? !ruby/range
         begin: 20
         end: 99
         excl: false
-      : :briefly: You are in a clothes closet. There many clothing items hanging.
-        :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
-          on a rod. It is maybe four feet deep and three feet across.
-    id: 2015-04-23_ab46be2cf3297e4d
-    locations: []
-    shine_level: 0
-    contents:
-    - !ruby/object:Item
-      description_data:
-        ? !ruby/range
-          begin: 20
-          end: 99
-          excl: false
-        : :briefly: Some boxes are stacked in a corner.
-          :in_detail: Six mens shoe boxes are stacked in the corner.
-      id: cdb0c2832ebec5d6
-      labels_player_might_use_to_refer_to_this:
-      - box
-      - boxes
-      - shoeboxes
-      - item
-      responses:
-        :move: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :push: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :pull: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :any: Really? They are just some old shoeboxes. Nothing happens.
-        :kill: !ruby/object:Response
-          responder: :game
-          method: :stop
-          narrative: Really? You want to kill the shoe box? You must be a maniac.
-            You will not enjoy this game. Go find something else to do.
-    - &1 !ruby/object:Light
-      description_data: {}
-      id: f90d7462f4501a4f
-      shine_level_when_lit: 40
-      shine_level: 0
-    - !ruby/object:Switch
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 19
-          excl: false
-        : :any: A thin chain dangles from above.
-        ? !ruby/range
-          begin: 20
-          end: 99
-          excl: false
-        : :any: A thin pull chain dangles from a light in the ceiling.
-      id: e8b34262691737b6
-      labels_player_might_use_to_refer_to_this:
-      - pullchain
-      - chain
-      - pull_chain
-      - switch
-      togglees:
-      - *1
-    - !ruby/object:Ghost
-      name: Hank
-      labels_player_might_use_to_refer_to_this:
-      - Hank
-      - ghost
-      location_id: 
-    - !ruby/object:TrainingDummy
-      name: Mokujin
-      labels_player_might_use_to_refer_to_this:
-      - Mokujin
-      - trainingdummy
-      location_id: 
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 99
-          excl: false
-        : :any: A battered, wooden training dummy.
-  2015-04-23_c6d4bff85e1ccd23: &3 !ruby/object:Location
+      : :any: A thin pull chain dangles from a light in the ceiling.
+    id: fad80063b7b3c21d
+    labels_player_might_use_to_refer_to_this:
+    - pullchain
+    - chain
+    - pull_chain
+    - switch
+    togglees:
+    - *1
+  - !ruby/object:Ghost
+    name: Hank
+    labels_player_might_use_to_refer_to_this:
+    - Hank
+    - ghost
+    location: 
+  - !ruby/object:TrainingDummy
+    name: Mokujin
+    labels_player_might_use_to_refer_to_this:
+    - Mokujin
+    - trainingdummy
+    location: 
+    description_data:
+      ? !ruby/range
+        begin: 0
+        end: 99
+        excl: false
+      : :any: A battered, wooden training dummy.
+outfit: 
+debug_output_level: 0
+file_safe_name: 
+game: 
+locations:
+  2015-04-23_ab46be2cf3297e4d: *2
+  2015-04-23_c6d4bff85e1ccd23: &4 !ruby/object:Location
     sys_name: 
     map_name: A bedroom
     short_name: A bedroom
@@ -126,7 +126,7 @@ locations:
       labels_player_might_use_to_refer_to_this:
       - Charles
       - being
-      location_id: 
+      location: 
       description_data:
         ? !ruby/range
           begin: 0
@@ -140,7 +140,7 @@ locations:
         :any: Charles remains unmoved.
         :look: Charles shouts, “Don’t look at me!”
 portals:
-  7238c7c78786f23cb0a907fb00ddaebd: &2 !ruby/object:Portal
+  7238c7c78786f23cb0a907fb00ddaebd: &3 !ruby/object:Portal
     location_a_id: 2015-04-23_ab46be2cf3297e4d
     location_b_id: 2015-04-23_c6d4bff85e1ccd23
     door_a: !ruby/object:Door
@@ -152,7 +152,7 @@ portals:
         :closed: 0.05
         :what: what do you mean this is too detailed? i did not even add teh sound
           transmission factors, yet!
-      portal: *2
+      portal: *3
       description_data:
         ? !ruby/range
           begin: 20
@@ -165,10 +165,8 @@ portals:
       - bedroom_door
       - bedroom
       - door
-      other_side_location_id: 2015-04-23_c6d4bff85e1ccd23
-      this_side_location_id: 2015-04-23_ab46be2cf3297e4d
-      other_side_location: *3
-      this_side_location: *4
+      other_side_location: *4
+      this_side_location: *2
     door_b: !ruby/object:Door
       this_side_state: :shut
       light_transmission_factor:
@@ -178,7 +176,7 @@ portals:
         :closed: 0.05
         :what: what do you mean this is too detailed? i did not even add teh sound
           transmission factors, yet!
-      portal: *2
+      portal: *3
       description_data:
         ? !ruby/range
           begin: 0
@@ -191,10 +189,8 @@ portals:
       - closet_door
       - closet
       - door
-      other_side_location_id: 2015-04-23_ab46be2cf3297e4d
-      this_side_location_id: 2015-04-23_c6d4bff85e1ccd23
-      other_side_location: *4
-      this_side_location: *3
+      other_side_location: *2
+      this_side_location: *4
     id: 7238c7c78786f23cb0a907fb00ddaebd
 description_data:
   ? !ruby/range

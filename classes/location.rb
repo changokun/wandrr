@@ -35,8 +35,14 @@ class Location
 
   def get_illumination_level
 
+
     # loop through everything in the location and find the highest shine level
     illumination_level = self.get_shine_level
+    
+    binding.pry
+    #self.doors returns false.
+
+    
     doors.each do | door |
       illumination_level = door.get_shine_level if door.get_shine_level > illumination_level
     end

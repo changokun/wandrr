@@ -42,12 +42,6 @@ class Portal
     @door_b.portal = self
 
     # but these should be needed
-    @door_a.other_side_location_id = location_b.id
-    @door_b.other_side_location_id = location_a.id
-
-    @door_a.this_side_location_id = location_a.id
-    @door_b.this_side_location_id = location_b.id
-
     @door_a.other_side_location = location_b
     @door_b.other_side_location = location_a
 
@@ -63,7 +57,7 @@ class Portal
   def get_door_for_location location
     raise TypeError unless location.is_a? Location
     # is this location the a or the b?
-    location.id == @location_a_id ? @door_a : @door_b
+    location.equal? location ? @door_a : @door_b
   end
 
 
