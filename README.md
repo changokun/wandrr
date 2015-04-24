@@ -22,8 +22,7 @@ The addition of the observer module has helped a lot. Things that are currently 
 
 Tasks:
 * In some cases, going through a door should automatically open it. but in some special cases, this should not happen.
-* Remove the use of ids to track things - it is a hold over from when I didn't know ruby at all. Now I know a little ruby, and it is (sorta) a by-reference thing, so we will just store the objects in the bag. that's it. not a list of object ids in the bag that we go look up.
-* My keyboard is too noisy.
+* Actions taken on a door may or may not affect the door on the other side of the portal. Think exit doors: locked from the outside, unlocked from the inside. The portal can govern these links.
 * (partially implemented) Counters - Try belching a few times. Let's count how many times Player has been to a location. How many times each command (base class) has been given.
 * (partially implemented) Finalize Save. Some parts of the code put meaningless things on the player, I think. they are marked in the code with comments, I think.
 * Modify exit commands to check for and offer a save.
