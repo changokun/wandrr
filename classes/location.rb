@@ -10,6 +10,7 @@ class Location
   include Describable, Capacitous, Shines
 
   attr_accessor :sysname, :map_name, :short_name, :long_name, :descriptions, :id
+  attr_reader :doors
 
   def initialize short_name = nil
     @sys_name = 'nowhere'
@@ -23,26 +24,19 @@ class Location
 
     @id = Time.now.strftime('%Y-%m-%d') + '_' + Digest::MD5.hexdigest(short_name)[0...16]
 
-    # sublocations? 
-    @locations = []
-
     if short_name
       @short_name = short_name
       @sys_name = @short_name.gsub(/[^a-z0-9]/, '_').downcase!
       @map_name = @short_name
     end
+    @doors = []
   end
 
   def get_illumination_level
 
-
     # loop through everything in the location and find the highest shine level
     illumination_level = self.get_shine_level
-    
-    binding.pry
-    #self.doors returns false.
 
-    
     doors.each do | door |
       illumination_level = door.get_shine_level if door.get_shine_level > illumination_level
     end
@@ -60,34 +54,9 @@ class Location
 
   end
 
-  def portals
-    portals = []
-    $player.portals.each do | portal_id, portal |
-      if portal.location_a_id == @id or portal.location_b_id == @id
-        portals << portal
-      end
-    end
-    portals
-  end
-
-  def doors
-    doors = []
-    self.portals.each do | portal |
-      doors << portal.get_door_for_location(self)
-    end
-    doors
-  end
-
   def name
     @short_name.cyan
   end
 
-
-
-  # wait, is this duncitonality duplicated?
-  def self.get_by_id id
-    abort id.to_s
-    $player.locations[id]
-  end
 
 end

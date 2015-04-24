@@ -99,8 +99,6 @@ description_data = {
 bedroom.set_descriptions description_data
 
 
-player.locations[bedroom.id] = bedroom
-
 
 # let us connect those two.
 # need two Door objects - not really. same door both sides.

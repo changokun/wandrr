@@ -26,9 +26,6 @@ class PlayerFactory
       end
     end
 
-    $locations = $player.locations
-    $portals = $player.portals
-
   end
 
 
