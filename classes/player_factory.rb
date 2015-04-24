@@ -16,14 +16,15 @@ class PlayerFactory
       puts 'Ah yes, I remember you, ' + $player.name
     rescue
       puts 'I see... ' + name + ' is new here.'
-      $player = Marshal::load(File.open(File.join(DATA_PATH, 'starting_player.data'), 'r'))
-      $player.debug_output 'Loading fresh meat'
-      $player.set_name name
-      $player.file_safe_name = file_safe_name
+      begin
+        $player = Marshal::load(File.open(File.join(DATA_PATH, 'starting_player.data'), 'r'))
+        $player.debug_output 'Loading fresh meat'
+        $player.set_name name
+        $player.file_safe_name = file_safe_name
+      rescue
+        abort "No data files found. Please run ".red + "ruby tools/make_defaults.rb".yellow + " then try again.".red
+      end
     end
-
-    $locations = $player.locations
-    $portals = $player.portals
 
   end
 

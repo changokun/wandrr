@@ -2,200 +2,190 @@
 name: default
 labels_player_might_use_to_refer_to_this:
 - player
-location_id: 2015-04-23_ab46be2cf3297e4d
-outfit: 
-debug_output_level: 0
-file_safe_name: 
-game: 
-locations:
-  2015-04-23_ab46be2cf3297e4d: &4 !ruby/object:Location
-    sys_name: 
-    map_name: A closet
-    short_name: A closet
-    long_name: Your closet
+location: &4 !ruby/object:Location
+  sys_name: 
+  map_name: A closet
+  short_name: A closet
+  long_name: Your closet
+  description_data:
+    ? !ruby/range
+      begin: 0
+      end: 19
+      excl: false
+    : :briefly: It feels like you are in a closet. You are competing for space with
+        some hanging clothes.
+      :in_detail: It feels like you are in a closet. You are among dozens of hanging
+        clothing items. It is maybe four feet deep and three feet across.
+    ? !ruby/range
+      begin: 20
+      end: 99
+      excl: false
+    : :briefly: You are in a clothes closet. There many clothing items hanging.
+      :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
+        on a rod. It is maybe four feet deep and three feet across.
+  id: 2015-04-23_ab46be2cf3297e4d
+  doors:
+  - &1 !ruby/object:Door
+    this_side_state: :shut
+    light_transmission_factor:
+      :open: 0.6
+      :ajar: 0.3
+      :cracked: 0.1
+      :closed: 0.05
+      :what: what do you mean this is too detailed? i did not even add teh sound transmission
+        factors, yet!
+    portal: &2 !ruby/object:Portal
+      door_a: *1
+      door_b: &3 !ruby/object:Door
+        this_side_state: :shut
+        light_transmission_factor:
+          :open: 0.6
+          :ajar: 0.3
+          :cracked: 0.1
+          :closed: 0.05
+          :what: what do you mean this is too detailed? i did not even add teh sound
+            transmission factors, yet!
+        portal: *2
+        description_data:
+          ? !ruby/range
+            begin: 0
+            end: 99
+            excl: false
+          : :briefly: There is a closet door.
+            :in_detail: There is a normal interior house door, you know, with a knob
+              and everything, leading to a closet. Where you were earlier.
+        labels_player_might_use_to_refer_to_this:
+        - closet_door
+        - closet
+        - door
+        location: !ruby/object:Location
+          sys_name: 
+          map_name: A bedroom
+          short_name: A bedroom
+          long_name: Your bedroom
+          description_data:
+            ? !ruby/range
+              begin: 0
+              end: 99
+              excl: false
+            : :briefly: You are in a bedroom. You can tell this because there is a
+                bed.
+              :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
+                the wall, is neatly made with an orange blanket on top and two pillows.
+                The walls are also orange.
+          id: 2015-04-23_c6d4bff85e1ccd23
+          doors:
+          - *3
+          shine_level: 60
+          contents:
+          - !ruby/object:Being
+            name: Charles
+            labels_player_might_use_to_refer_to_this:
+            - Charles
+            - being
+            location: 
+            description_data:
+              ? !ruby/range
+                begin: 0
+                end: 99
+                excl: false
+              : :briefly: Charles is here.
+                :in_detail: Charles is standing around, doing very little.
+            responses:
+              :move: Charles says, “Leave me alone.”
+              :activate: Charles says, “Leave me alone.”
+              :any: Charles remains unmoved.
+              :look: Charles shouts, “Don’t look at me!”
+      id: d41d8cd98f00b204e9800998ecf8427e
+    description_data:
+      ? !ruby/range
+        begin: 20
+        end: 99
+        excl: false
+      : :briefly: There is a normal household door.
+        :in_detail: A normal interior house door. Twisting a round knob to one side
+          will open it. It seems to be painted white.
+    labels_player_might_use_to_refer_to_this:
+    - bedroom_door
+    - bedroom
+    - door
+    location: *4
+  shine_level: 0
+  contents:
+  - !ruby/object:Item
+    description_data:
+      ? !ruby/range
+        begin: 20
+        end: 99
+        excl: false
+      : :briefly: Some boxes are stacked in a corner.
+        :in_detail: Six mens shoe boxes are stacked in the corner.
+    id: 9a269e19fd879e79
+    labels_player_might_use_to_refer_to_this:
+    - box
+    - boxes
+    - shoeboxes
+    - item
+    responses:
+      :move: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :push: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :pull: There isn’t much room. You shift the boxes a few inches, but nothing
+        happens.
+      :any: Really? They are just some old shoeboxes. Nothing happens.
+      :kill: !ruby/object:Response
+        responder: :game
+        method: :stop
+        narrative: Really? You want to kill the shoe box? You must be a maniac. You
+          will not enjoy this game. Go find something else to do.
+  - &5 !ruby/object:Light
+    description_data: {}
+    id: f826295f37e44661
+    shine_level_when_lit: 40
+    shine_level: 0
+  - !ruby/object:Switch
     description_data:
       ? !ruby/range
         begin: 0
         end: 19
         excl: false
-      : :briefly: It feels like you are in a closet. You are competing for space with
-          some hanging clothes.
-        :in_detail: It feels like you are in a closet. You are among dozens of hanging
-          clothing items. It is maybe four feet deep and three feet across.
+      : :any: A thin chain dangles from above.
       ? !ruby/range
         begin: 20
         end: 99
         excl: false
-      : :briefly: You are in a clothes closet. There many clothing items hanging.
-        :in_detail: This clothes closet has dozens of mens shirts and jackets hanging
-          on a rod. It is maybe four feet deep and three feet across.
-    id: 2015-04-23_ab46be2cf3297e4d
-    locations: []
-    shine_level: 0
-    contents:
-    - !ruby/object:Item
-      description_data:
-        ? !ruby/range
-          begin: 20
-          end: 99
-          excl: false
-        : :briefly: Some boxes are stacked in a corner.
-          :in_detail: Six mens shoe boxes are stacked in the corner.
-      id: cdb0c2832ebec5d6
-      labels_player_might_use_to_refer_to_this:
-      - box
-      - boxes
-      - shoeboxes
-      - item
-      responses:
-        :move: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :push: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :pull: There isn’t much room. You shift the boxes a few inches, but nothing
-          happens.
-        :any: Really? They are just some old shoeboxes. Nothing happens.
-        :kill: !ruby/object:Response
-          responder: :game
-          method: :stop
-          narrative: Really? You want to kill the shoe box? You must be a maniac.
-            You will not enjoy this game. Go find something else to do.
-    - &1 !ruby/object:Light
-      description_data: {}
-      id: f90d7462f4501a4f
-      shine_level_when_lit: 40
-      shine_level: 0
-    - !ruby/object:Switch
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 19
-          excl: false
-        : :any: A thin chain dangles from above.
-        ? !ruby/range
-          begin: 20
-          end: 99
-          excl: false
-        : :any: A thin pull chain dangles from a light in the ceiling.
-      id: e8b34262691737b6
-      labels_player_might_use_to_refer_to_this:
-      - pullchain
-      - chain
-      - pull_chain
-      - switch
-      togglees:
-      - *1
-    - !ruby/object:Ghost
-      name: Hank
-      labels_player_might_use_to_refer_to_this:
-      - Hank
-      - ghost
-      location_id: 
-    - !ruby/object:TrainingDummy
-      name: Mokujin
-      labels_player_might_use_to_refer_to_this:
-      - Mokujin
-      - trainingdummy
-      location_id: 
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 99
-          excl: false
-        : :any: A battered, wooden training dummy.
-  2015-04-23_c6d4bff85e1ccd23: &3 !ruby/object:Location
-    sys_name: 
-    map_name: A bedroom
-    short_name: A bedroom
-    long_name: Your bedroom
+      : :any: A thin pull chain dangles from a light in the ceiling.
+    id: c566ae1bdb8035dd
+    labels_player_might_use_to_refer_to_this:
+    - pullchain
+    - chain
+    - pull_chain
+    - switch
+    togglees:
+    - *5
+  - !ruby/object:Ghost
+    name: Hank
+    labels_player_might_use_to_refer_to_this:
+    - Hank
+    - ghost
+    location: 
+  - !ruby/object:TrainingDummy
+    name: Mokujin
+    labels_player_might_use_to_refer_to_this:
+    - Mokujin
+    - trainingdummy
+    location: 
     description_data:
       ? !ruby/range
         begin: 0
         end: 99
         excl: false
-      : :briefly: You are in a bedroom. You can tell this because there is a bed.
-        :in_detail: You are in a sparse bedroom. A queen-sized bed, pushed against
-          the wall, is neatly made with an orange blanket on top and two pillows.
-          The walls are also orange.
-    id: 2015-04-23_c6d4bff85e1ccd23
-    locations: []
-    shine_level: 60
-    contents:
-    - !ruby/object:Being
-      name: Charles
-      labels_player_might_use_to_refer_to_this:
-      - Charles
-      - being
-      location_id: 
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 99
-          excl: false
-        : :briefly: Charles is here.
-          :in_detail: Charles is standing around, doing very little.
-      responses:
-        :move: Charles says, “Leave me alone.”
-        :activate: Charles says, “Leave me alone.”
-        :any: Charles remains unmoved.
-        :look: Charles shouts, “Don’t look at me!”
-portals:
-  7238c7c78786f23cb0a907fb00ddaebd: &2 !ruby/object:Portal
-    location_a_id: 2015-04-23_ab46be2cf3297e4d
-    location_b_id: 2015-04-23_c6d4bff85e1ccd23
-    door_a: !ruby/object:Door
-      this_side_state: :shut
-      light_transmission_factor:
-        :open: 0.6
-        :ajar: 0.3
-        :cracked: 0.1
-        :closed: 0.05
-        :what: what do you mean this is too detailed? i did not even add teh sound
-          transmission factors, yet!
-      portal: *2
-      description_data:
-        ? !ruby/range
-          begin: 20
-          end: 99
-          excl: false
-        : :briefly: There is a normal household door.
-          :in_detail: A normal interior house door. Twisting a round knob to one side
-            will open it. It seems to be painted white.
-      labels_player_might_use_to_refer_to_this:
-      - bedroom_door
-      - bedroom
-      - door
-      other_side_location_id: 2015-04-23_c6d4bff85e1ccd23
-      this_side_location_id: 2015-04-23_ab46be2cf3297e4d
-      other_side_location: *3
-      this_side_location: *4
-    door_b: !ruby/object:Door
-      this_side_state: :shut
-      light_transmission_factor:
-        :open: 0.6
-        :ajar: 0.3
-        :cracked: 0.1
-        :closed: 0.05
-        :what: what do you mean this is too detailed? i did not even add teh sound
-          transmission factors, yet!
-      portal: *2
-      description_data:
-        ? !ruby/range
-          begin: 0
-          end: 99
-          excl: false
-        : :briefly: There is a closet door.
-          :in_detail: There is a normal interior house door, you know, with a knob
-            and everything, leading to a closet. Where you were earlier.
-      labels_player_might_use_to_refer_to_this:
-      - closet_door
-      - closet
-      - door
-      other_side_location_id: 2015-04-23_ab46be2cf3297e4d
-      this_side_location_id: 2015-04-23_c6d4bff85e1ccd23
-      other_side_location: *4
-      this_side_location: *3
-    id: 7238c7c78786f23cb0a907fb00ddaebd
+      : :any: A battered, wooden training dummy.
+outfit: 
+debug_output_level: 0
+file_safe_name: 
+game: 
 description_data:
   ? !ruby/range
     begin: 0

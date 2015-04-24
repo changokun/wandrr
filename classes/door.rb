@@ -6,13 +6,11 @@ class Door
 
   include Describable, Shines, PlayerAwareness
 
-  attr_writer :portal, :other_side_location_id, :this_side_location_id, :other_side_location, :this_side_location
+  attr_accessor :location
+  attr_writer :portal
 
   def initialize
-    @this_side_location_id
-    @other_side_location_id
-    @this_side_location
-    @other_side_location
+    @location
     @this_side_state = :shut # :open :ajar :cracked
     # @other_side_state ha ha who cares?
     @light_transmission_factor = {
@@ -46,7 +44,9 @@ class Door
   end
 
   def destination
-    @other_side_location
+    @portal.doors.each do | door |
+      return door.location unless door.equal? self
+    end
   end
 
   def allows_passage?

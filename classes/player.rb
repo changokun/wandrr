@@ -4,7 +4,7 @@ require 'digest'
 
 class Player < ArticulateAnimal
 
-  attr_accessor :debug_output_level, :file_safe_name, :game, :locations, :portals
+  attr_accessor :debug_output_level, :file_safe_name, :game
 
   def initialize name = nil
     super
@@ -12,9 +12,6 @@ class Player < ArticulateAnimal
     @debug_output_level = 0
     @file_safe_name = nil
     @game = nil # will hold a ref to the running game. should not be marshaled.
-
-    @locations = {}
-    @portals = {}
   end
 
 
