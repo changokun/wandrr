@@ -36,3 +36,9 @@ build/
 # wandrr
 saves/
  # for now
+*.data
+*.yaml
+
+
+
+
