@@ -38,7 +38,7 @@ saves/
  # for now
 *.data
 *.yaml
-
+*.yml
 
 
 
